@@ -14,6 +14,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>demo-aop</module>
+        <module>demo-annotation</module>
     </modules>
 
 
