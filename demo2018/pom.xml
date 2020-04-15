@@ -15,6 +15,7 @@
     <modules>
         <module>demo-netty</module>
         <module>demo-socket</module>
+        <module>demo-java</module>
     </modules>
 
 
