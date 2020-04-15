@@ -19,6 +19,7 @@
 
     <modules>
         <module>demo-spring-boot-starter</module>
+        <module>demo2018</module>
     </modules>
 
     <properties>
