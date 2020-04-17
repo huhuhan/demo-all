@@ -15,6 +15,7 @@
     <modules>
         <module>demo-aop</module>
         <module>demo-annotation</module>
+        <module>demo-redis</module>
     </modules>
 
 
