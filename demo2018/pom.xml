@@ -17,6 +17,7 @@
         <module>demo-socket</module>
         <module>demo-java</module>
         <module>demo-activemq</module>
+        <module>demo-security</module>
     </modules>
 
 

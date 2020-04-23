@@ -1,0 +1,24 @@
+server:
+  port: 8800
+  servlet:
+    context-path: /
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: yanghan
+  jpa:
+    #控制台显示sql语句
+    show-sql: true
+    hibernate:
+      #create 启动时删数据库中的表，然后创建，退出时不删除数据表
+      #create-drop 启动时删数据库中的表，然后创建，退出时删除数据表 如果表不存在报错
+      #update 如果启动时表格式不一致则更新表，原有数据保留，会按实体新建缺失的表
+      #validate 项目启动表结构进行校验 如果不一致则报错
+      ddl-auto: update
+  thymeleaf:
+    cache: false
+
