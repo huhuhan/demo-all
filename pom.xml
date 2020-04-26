@@ -21,6 +21,7 @@
         <module>demo-spring-boot-starter</module>
         <module>demo2018</module>
         <module>demo2019</module>
+        <module>demo-sc</module>
     </modules>
 
     <properties>
