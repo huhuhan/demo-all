@@ -15,3 +15,4 @@
      - demo redis
      - demo thread ：spring async annotation
      - demo annotation
+     - demo kafka

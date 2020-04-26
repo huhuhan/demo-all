@@ -6,4 +6,5 @@ kafka可视化工具
 - kafka-manager，docker版无法连接zookeeper
 - kafka-tools， 单独安装
 
-[参考](https://www.jianshu.com/p/f5eaa32cf1f3)
+
+[参考](http://note.youdao.com/noteshare?id=d98940a3c8cd4e60804527c0c0735a21)
