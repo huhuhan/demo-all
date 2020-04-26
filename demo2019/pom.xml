@@ -17,6 +17,7 @@
         <module>demo-annotation</module>
         <module>demo-redis</module>
         <module>demo-thread</module>
+        <module>demo-kafka</module>
     </modules>
 
 </project>

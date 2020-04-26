@@ -1,8 +1,17 @@
-# Getting Started
+# 练习项目归纳总结
 
-### Reference Documentation
-For further reference, please consider the following sections:
+> 将分散在多个仓库中的demo项目汇总，部分项目比较老，都经测试可运行才归纳，无法运行的直接删除了
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.2.6.RELEASE/maven-plugin/)
-
+## 清单
+- demo spring boot starter
+- demo 2018
+     - demo activemq
+     - demo netty
+     - demo security
+     - demo socket ： java IO、NIO、AIO
+     - demo java ：java code by main method
+- demo 2019
+     - demo aop ：by xml 
+     - demo redis
+     - demo thread ：spring async annotation
+     - demo annotation
