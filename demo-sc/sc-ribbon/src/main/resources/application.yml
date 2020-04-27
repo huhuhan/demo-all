@@ -1,15 +1,26 @@
 eureka:
   instance:
     #静态页面，默认/info，做快捷测试用
-    status-page-url-path: /hi?name=testBysc-ribbon
+    status-page-url-path: /hi?name=testBy[sc-client-ribbon]
 server:
   port: 8883
 spring:
   application:
-    name: service-ribbon
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-      base-path: /
+    name: sc-client-ribbon
+
+
+# 熔断超时配置
+hystrix:
+  command:
+    # 自定义的commandKey，区分默认超时
+    clientA-2:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+    # 默认超时
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 9000

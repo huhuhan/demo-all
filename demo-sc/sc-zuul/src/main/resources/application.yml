@@ -1,0 +1,44 @@
+server:
+  port: 8880
+spring:
+  application:
+    name: sc-gateway-zuul
+zuul:
+  #统一前缀
+  prefix: /api
+  # 忽略路由，需加prefix前缀
+  ignored-patterns: /api/client-a/route-ignore/**
+  # 路由转递默认会过滤http的头信息，默认参数Arrays.asList("Cookie", "Set-Cookie", "Authorization")，设置为空，保证认证参数传递有效
+  sensitive-headers:
+  routes:
+    # 默认规则，不配置，即/serviceID/**
+    # 以下serviceId基于eureka注册，所以都需要大写字母
+    client-a:
+      path: /client-a/**
+      serviceId: SC-CLIENT-HELLO
+      # 不依赖eureka的话
+#      url: http://localhost:8881/
+    # 简写方式
+    SC-CLIENT-FEIGN: /client-b/**
+    SC-CLIENT-RIBBON: /client-c/**
+#    SC-CLIENT-HELLO: /client-a/**  #http://localhost:8881/
+    #本地跳转，适用zuul自身服务请求
+    client-z:
+      path: /client-z/**
+      serviceId: forward:/test/
+
+# 超时时间，路由基于serviceId配置起效
+ribbon:
+  ConnectTimeout: 5000
+  ReadTimeout: 5000
+# 某服务超时配置
+SC-CLIENT-FEIGN:
+  ribbon:
+    ConnectTimeout: 3000
+    ReadTimeout: 3000
+
+
+# 关闭使用eureka负载路由，不依赖eureka
+#ribbon:
+#  eureka:
+#    enabled: false

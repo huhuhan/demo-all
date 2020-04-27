@@ -4,12 +4,25 @@ server:
 eureka:
     instance:
         hostname: localhost
+        # 自我保护模式调优参数，默认30秒，减小提高
+        lease-renewal-interval-in-seconds: 10
     client:
         # 取消注册自身
         registerWithEureka: false
         fetchRegistry: false
+        # 调优参数，Client服务注册同步延迟时间，默认40秒
+        initial-instance-info-replication-interval-seconds: 20
+        # 调优参数，Client服务获取Service注册信息频率
+        registry-fetch-interval-seconds: 10
     serviceUrl:
         defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
-    # 测试时关闭自我保护机制，保证不可用服务及时踢出;默认打开
+    # 以下配置默认开启，关闭配置适合测试调试用
     server:
+      # 自我保护模式
       enable-self-preservation: false
+      # 自我保护模式调优参数，默认0.85, 减小提高每分钟服务续约次数
+      renewal-percent-threshold: 0.5
+      # 关闭REST API 响应缓存
+      use-read-only-response-cache: false
+      # EvictionTask的调度频率，默认60秒
+      eviction-interval-timer-in-ms: 5000

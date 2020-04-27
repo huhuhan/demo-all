@@ -14,4 +14,9 @@ public class HelloFeignClientHystric implements HelloFeignClient {
         return "sorry " + name + " request server is stop";
 
     }
+
+    @Override
+    public String testHystrix(String name) {
+        return  "测试熔断时长";
+    }
 }

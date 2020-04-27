@@ -16,4 +16,6 @@ public interface HelloFeignClient {
     @RequestMapping(value = "/hi", method = RequestMethod.GET)
     String sayHiFromClientOne(@RequestParam(value = "name") String name);
 
+    @RequestMapping(value = "/hi2", method = RequestMethod.GET)
+    String testHystrix(@RequestParam(value = "name") String name);
 }

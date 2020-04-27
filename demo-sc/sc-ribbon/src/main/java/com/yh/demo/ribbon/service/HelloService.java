@@ -28,6 +28,11 @@ public class HelloService {
         return restTemplate.getForObject("http://" + CLIENT_A + "/hi?name=" + name, String.class);
     }
 
+    @HystrixCommand(commandKey = "clientA-2", fallbackMethod = "hiError")
+    public String hiService2(String name) {
+        return restTemplate.getForObject("http://" + CLIENT_A + "/hi?name=" + name, String.class);
+    }
+
     public String hiError(String name) {
         return "Hi," + name + ",sorry, error！";
     }

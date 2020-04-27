@@ -17,6 +17,7 @@
         <module>sc-clientA</module>
         <module>sc-feign</module>
         <module>sc-ribbon</module>
+        <module>sc-zuul</module>
     </modules>
 
     <!--统一管理版本-->
