@@ -5,14 +5,20 @@
 ## 清单
 - demo spring boot starter
 - demo 2018
-     - demo activemq
-     - demo netty
-     - demo security
-     - demo socket ： java IO、NIO、AIO
-     - demo java ：java code by main method
+    - demo activemq
+    - demo netty
+    - demo security
+    - demo socket ： java IO、NIO、AIO
+    - demo java ：java code by main method
 - demo 2019
-     - demo aop ：by xml 
-     - demo redis
-     - demo thread ：spring async annotation
-     - demo annotation
-     - demo kafka
+    - demo aop ：by xml 
+    - demo redis
+    - demo thread ：spring async annotation
+    - demo annotation
+    - demo kafka
+- demo sc
+    - sc eureka
+    - sc clientA
+    - sc feign
+    - sc ribbon
+    - sc zuul
