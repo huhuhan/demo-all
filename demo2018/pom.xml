@@ -18,6 +18,7 @@
         <module>demo-java</module>
         <module>demo-activemq</module>
         <module>demo-security</module>
+        <module>demo-mybatis-tk</module>
     </modules>
 
 

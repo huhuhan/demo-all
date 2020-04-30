@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="config.properties"/>
+
+    <!--不生成Example：MyBatis3Simple-->
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <!--通用 Mapper 插件，可以生成带注解的实体类-->
+        <plugin type="${mapper.plugin}">
+            <property name="mappers" value="${mapper.Mapper}"/>
+            <property name="caseSensitive" value="true"/><!--区分大小写-->
+            <property name="forceAnnotation" value="true"/><!--强制生成注解-->
+            <property name="beginningDelimiter" value="`"/><!--开始和结束分隔符-->
+            <property name="endingDelimiter" value="`"/>
+            <property name="lombok" value="Data"/><!--使用lombok注解 -->
+        </plugin>
+        <!--实体类实现序列化-->
+        <!--<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />-->
+        <!--数据库连接-->
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.url}" userId="${jdbc.user}" password="${jdbc.password}">
+        </jdbcConnection>
+        <!--实体类路径, pom中（依赖jar包可用）或properties中配置-->
+        <javaModelGenerator targetPackage="${targetModelPackage}"
+                            targetProject="${targetJavaProject}"/>
+        <!--XML路径-->
+        <sqlMapGenerator targetPackage="${targetXMLPackage}"
+                         targetProject="${targetResourcesProject}"/>
+
+        <!--XML对应的Mapper接口路径-->
+        <javaClientGenerator targetPackage="${targetMapperPackage}"
+                             targetProject="${targetJavaProject}" type="XMLMAPPER"/>
+        <!-- 设置要生成代码的表 -->
+<!--        <table tableName="user" />-->
+        <table tableName="%" />
+        <!--<table tableName="pc_omc_order" domainObjectName="OmcOrder">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>-->
+    </context>
+</generatorConfiguration>
