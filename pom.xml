@@ -22,6 +22,7 @@
         <module>demo2018</module>
         <module>demo2019</module>
         <module>demo-sc</module>
+        <module>demo2020</module>
     </modules>
 
     <properties>
