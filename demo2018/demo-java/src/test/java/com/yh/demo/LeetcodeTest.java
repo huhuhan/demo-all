@@ -38,7 +38,7 @@ public class LeetcodeTest {
      */
     @Test
     public void longestPalindrome() {
-        String s = "";
+        String s = "3234443";
         this.outParam(s);
         String subString = "";
         if (null != s && s.length() > 0) {
@@ -79,23 +79,38 @@ public class LeetcodeTest {
 
     /**
      * T3:无重复字符的最长子串
+     * 时间复杂度：O(N)，其中 N 是字符串的长度
+     * 【滑动窗口】思路
      */
     @Test
     public void lengthOfLongestSubstring() {
-        String s = "abcafraa123456";
+        String s = "abcafABCraa123456";
         this.outParam(s);
         int n = s.length(), ans = 0;
-        int[] index = new int[128]; // current index of character
-        // i为左区间，j为右区间，j向右移动，index存储j字符的后一个下标
+        String maxSub = "";
+        //存储ASCII值的下标，如字符a，即index[97]，数组用于判断重复字符，可改为Map
+        int[] index = new int[128];
+        // i为左区间下标，j为右区间下标，j向右移动
         for (int j = 0, i = 0; j < n; j++) {
-            //判断j是否为重复字符，是，就j+1赋值给1，即i移动到j+1位置
-            i = Math.max(index[s.charAt(j)], i);
-            ans = Math.max(ans, j - i + 1);
-            //index存储j字符的后一个下标
+            //查询index是否记录过当前字符下标，没有返回0，有则返回下标
+            int newI = index[s.charAt(j)];
+//            this.outLog("i:" + i + ", newI:" + newI);
+            // 比较下标，获取最新左区间
+            i = Math.max(newI, i);
+
+            //当前左右区间下标、长度、子字符串
+            int cAns = j - i + 1;
+            String sub = s.substring(i, i + cAns);
+            this.outLog("i:" + i + ", j:" + j + ", ans:" + cAns + ", sub:" + sub);
+
+            //ans为最大区间长度
+            ans = Math.max(ans, cAns);
+            //index记录下个字符的下标
             index[s.charAt(j)] = j + 1;
-            this.outLog(s.substring(i, i + ans));
+
+            maxSub = maxSub.length() > sub.length() ? maxSub : sub;
         }
-        this.outResult(ans);
+        this.outResult("max ans: " + ans + ", max sub: " + maxSub);
     }
 
     /**
