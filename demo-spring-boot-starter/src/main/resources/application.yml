@@ -1,4 +1,5 @@
 hello:
+  enabled: 开启
   members:
     - AAA
     - Tony

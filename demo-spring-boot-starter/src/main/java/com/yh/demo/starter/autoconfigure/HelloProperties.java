@@ -1,16 +1,35 @@
 package com.yh.demo.starter.autoconfigure;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author yanghan
+ * @date 2020/3/29
+ */
 @ConfigurationProperties(prefix = "hello")
 public class HelloProperties {
-
+    /** 开启starter的匹配属性，测试特意用String类型 */
+    private String enabled;
     private final String MSG = "World";
     private String msg = MSG;
     List<String> members = new ArrayList<>();
+
+    public String getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(String enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getMSG() {
+        return MSG;
+    }
 
     public String getMsg() {
         return msg;
