@@ -1,5 +1,6 @@
 package com.yh.auth.security.autoconfigure;
 
+import com.yh.auth.security.authentication.filter.MyFilterSecurityInterceptor;
 import com.yh.auth.security.authentication.handler.MyAccessDeniedHandler;
 import com.yh.auth.security.authentication.handler.MyLoginUrlAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 /**
  * WebSecurity配置类
@@ -51,13 +53,13 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        //security 直接忽略的请求
+        //security 直接忽略的请求，一般配置静态文件
         web.ignoring()
                 //框架默认的一些请求
-                .antMatchers("/error", "/csrf")
+                .antMatchers("/error", "/csrf", "**.ico")
                 //swagger页面的请求
                 .antMatchers("/swagger-ui.html", "/swagger-resources/**", "/v2/api-docs/**", "/webjars/**")
-                //前端view页面请求，本项目的测试模块view包
+                //前端测试页面请求，本项目的测试模块在view包
                 .antMatchers("/", "/index", "/login_y");
     }
 
@@ -87,6 +89,13 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
                 .antMatchers("/depart2").hasAnyRole("ROLE_DEPART2")
                 .anyRequest().authenticated();
 
+        /** 默认FilterSecurityInterceptor过滤器，要求全部请求需认证鉴权 */
+        http.authorizeRequests()
+                .anyRequest().authenticated();
+
+        /** 新增自己的过滤器链，默认FilterSecurityInterceptor排序为最后个 */
+        http.addFilterAt(MyFilterSecurityInterceptor.init(), FilterSecurityInterceptor.class);
+
         /** 登录页配置 */
         http.formLogin()
                 //自己的登录页面
@@ -108,8 +117,6 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
 
         /** 其他配置 */
         http.csrf().disable();
-
-//        http.addFilterAfter(this.initMySecurityInterceptor(), FilterSecurityInterceptor.class);
     }
 
 }

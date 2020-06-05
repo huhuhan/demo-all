@@ -1,6 +1,9 @@
 package com.yh.auth.security.authentication.filter;
 
 
+import com.yh.auth.security.authentication.access.MyAccessDecisionManager;
+import com.yh.auth.security.authentication.access.MySecurityMetadataSource;
+import lombok.Data;
 import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
 import org.springframework.security.access.intercept.InterceptorStatusToken;
@@ -18,9 +21,22 @@ import java.io.IOException;
  * @author yanghan
  * @date 2020/6/1
  */
+@Data
 public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
 
     private FilterInvocationSecurityMetadataSource securityMetadataSource;
+
+    /**
+     * 初始化静态方法
+     *
+     * @return
+     */
+    public static MyFilterSecurityInterceptor init() {
+        MyFilterSecurityInterceptor myFilterSecurityInterceptor = new MyFilterSecurityInterceptor();
+        myFilterSecurityInterceptor.setAccessDecisionManager(new MyAccessDecisionManager());
+        myFilterSecurityInterceptor.setSecurityMetadataSource(new MySecurityMetadataSource());
+        return myFilterSecurityInterceptor;
+    }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
