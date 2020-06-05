@@ -34,6 +34,12 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
     private MyLoginUrlAuthenticationEntryPoint macLoginUrlAuthenticationEntryPoint;
 
     @Override
+    public void init(WebSecurity web) throws Exception {
+        //默认加载FilterSecurityInterceptor，点击父类方法查看
+        super.init(web);
+    }
+
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         /**
          * 在内存中创建一个名为 "user" 的用户，密码为 "pwd"，拥有 "USER" 权限，密码使用BCryptPasswordEncoder加密
