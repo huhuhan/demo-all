@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ import java.io.PrintWriter;
 
 /**
  * 扩展，未登录访问异常处理类
- * 参考，其他子类，默认LoginUrlAuthenticationEntryPoint是跳转登录页面
+ * 默认跳转登录页面， {@link LoginUrlAuthenticationEntryPoint }
  *
  * @author yanghan
  * @date 2020/6/1

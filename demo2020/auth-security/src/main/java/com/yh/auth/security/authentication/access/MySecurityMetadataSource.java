@@ -2,8 +2,11 @@ package com.yh.auth.security.authentication.access;
 
 import com.yh.auth.security.authentication.IgnoreChecker;
 import com.yh.auth.security.constants.AuthConstants;
+import com.yh.auth.security.util.TempUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.web.FilterInvocation;
+import org.springframework.security.web.access.intercept.DefaultFilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 
 import java.util.Collection;
@@ -11,10 +14,12 @@ import java.util.HashSet;
 
 /**
  * 扩展，权限元数据类
+ * 默认FilterSecurityInterceptor的权限元数据类，参考 {@link DefaultFilterInvocationSecurityMetadataSource}
  *
  * @author yanghan
  * @date 2020/6/1
  */
+@Slf4j
 public class MySecurityMetadataSource extends IgnoreChecker implements FilterInvocationSecurityMetadataSource {
 
     /**
@@ -26,22 +31,27 @@ public class MySecurityMetadataSource extends IgnoreChecker implements FilterInv
      */
     @Override
     public Collection<ConfigAttribute> getAttributes(Object o) throws IllegalArgumentException {
-        Collection<ConfigAttribute> configAttribute = new HashSet<ConfigAttribute>();
 
         //用户的请求地址
         String url = ((FilterInvocation) o).getRequestUrl();
-        System.out.println("用户请求的地址是：" + o);
+        TempUtils.logDebug(log, "用户请求的地址是：" + o);
 
+        ConfigAttribute currentRole = null;
         //匹配忽略的资源，提供匿名身份
         if (super.isIgnores(url)) {
-            configAttribute.add(AuthConstants.ROLE_CONFIG_ANONYMOUS);
-            return configAttribute;
+            currentRole = AuthConstants.ROLE_CONFIG_ANONYMOUS;
+        } else {
+            //根据当前的URL获取所需要的角色
+            //todo:前后端分离后，url作为前端路由，并不等于后端请求地址了，鉴权失效
+
+            currentRole = AuthConstants.ROLE_CONFIG_PUBLIC;
         }
 
-        //根据当前的URL获取所需要的角色
-        //todo:前后端分离后，url作为前端路由，并不等于后端请求地址了，鉴权失效
+        TempUtils.logDebug(log, "用户请求的地址是：" + o);
+        TempUtils.logDebug(log, "当前权限：" + currentRole.getAttribute());
 
-        configAttribute.add(AuthConstants.ROLE_CONFIG_PUBLIC);
+        Collection<ConfigAttribute> configAttribute = new HashSet<>();
+        configAttribute.add(currentRole);
         return configAttribute;
     }
 

@@ -62,7 +62,7 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
         //security 直接忽略的请求，一般配置静态文件
         web.ignoring()
                 //框架默认的一些请求
-                .antMatchers("/error", "/csrf", "**.ico")
+                .antMatchers("/error", "/csrf", "/*.ico")
                 //swagger页面的请求
                 .antMatchers("/swagger-ui.html", "/swagger-resources/**", "/v2/api-docs/**", "/webjars/**")
                 //前端测试页面请求，本项目的测试模块在view包
@@ -91,7 +91,6 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
 //                        return object;
 //                    }
 //                })
-                .antMatchers("/").permitAll()
                 .antMatchers("/depart2").hasAnyRole("ROLE_DEPART2")
                 .anyRequest().authenticated();
 
@@ -106,7 +105,8 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
         http.formLogin()
                 //自己的登录页面
                 .loginPage("/login_h")
-//        .usernameParameter("myusername").passwordParameter("mypassword")
+                .loginProcessingUrl("/login")
+                .usernameParameter("myUserName").passwordParameter("myPassword")
                 .permitAll();
 
         /** 登出页配置 */

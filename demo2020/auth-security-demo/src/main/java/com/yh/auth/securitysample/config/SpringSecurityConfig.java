@@ -70,7 +70,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().permitAll()    //支持表单登陆
                 .and()
                 .csrf().disable()
-                .addFilterAfter(AuthorizeSecurityInterceptor.init(), FilterSecurityInterceptor.class)
+                .addFilterAt(AuthorizeSecurityInterceptor.init(), FilterSecurityInterceptor.class)
         ;   //关闭默认的csrf认证
     }
 

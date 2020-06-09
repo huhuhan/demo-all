@@ -1,5 +1,7 @@
 package com.yh.auth.security.util;
 
+import org.slf4j.Logger;
+
 import javax.servlet.ServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,5 +29,11 @@ public class TempUtils {
         out.write(sb.toString());
         out.flush();
         out.close();
+    }
+
+    public static void logDebug(Logger log, String msg) {
+        if(log.isDebugEnabled()){
+            log.debug(msg);
+        }
     }
 }
