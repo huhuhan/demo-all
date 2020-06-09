@@ -3,6 +3,9 @@ package com.yh.auth.security.autoconfigure;
 import com.yh.auth.security.authentication.filter.MyFilterSecurityInterceptor;
 import com.yh.auth.security.authentication.handler.MyAccessDeniedHandler;
 import com.yh.auth.security.authentication.handler.MyLoginUrlAuthenticationEntryPoint;
+import com.yh.auth.security.authentication.provider.DemoAuthenticationProvider;
+import com.yh.auth.security.authentication.provider.userdetails.MyUserDetailsManager;
+import com.yh.auth.security.crypto.CustomPwdEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,14 +23,10 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
  */
 @EnableWebSecurity
 public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
-    //    @Autowired
-//    BackdoorAuthenticationProvider backdoorAuthenticationProvider;
-//    @Autowired
-//    MyUserDetailsService myUserDetailsService;
-//    @Autowired
-//    MyAccessDecisionManager myAccessDecisionManager;
-//    @Autowired
-//    MySecurityMetadataSource mySecurityMetadataSource;
+    @Autowired
+    private DemoAuthenticationProvider demoAuthenticationProvider;
+    @Autowired
+    private MyUserDetailsManager myUserDetailsManager;
     @Autowired
     private MyAccessDeniedHandler myAccessDeniedHandler;
     @Autowired
@@ -41,20 +40,13 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        /**
-         * 在内存中创建一个名为 "user" 的用户，密码为 "pwd"，拥有 "USER" 权限，密码使用BCryptPasswordEncoder加密
-         */
-        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("user").password(new BCryptPasswordEncoder().encode("pwd")).roles("USER");
-        /**
-         * 在内存中创建一个名为 "admin" 的用户，密码为 "pwd"，拥有 "USER" 和"ADMIN"权限
-         */
-        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("admin").password(new BCryptPasswordEncoder().encode("pwd")).roles("USER", "ADMIN");
+        //在内存中创建一个名为 "user" 的用户，密码为 "pwd"，拥有 "USER" 权限，密码使用自定义实现类CustomPwdEncoder加密
+        auth.inMemoryAuthentication().passwordEncoder(new CustomPwdEncoder())
+                .withUser("user").password(new CustomPwdEncoder().encode("pwd")).roles("USER");
         //将自定义验证类注册进去
-//        auth.authenticationProvider(backdoorAuthenticationProvider);
-//        //加入数据库验证类，下面的语句实际上在验证链中加入了一个DaoAuthenticationProvider
-//        auth.userDetailsService(myUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.authenticationProvider(demoAuthenticationProvider);
+        //加入数据库验证类，下面的语句实际上在验证链中加入了一个DaoAuthenticationProvider
+        auth.userDetailsService(myUserDetailsManager).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override
@@ -71,56 +63,30 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-//                .authorizeRequests()
-//                .withObjectPostProcessor(new ObjectPostProcessor<MySecurityInterceptor>() {
-//                    @Override
-//                    public <O extends MySecurityInterceptor> O postProcess(O object) {
-//                        object.setSecurityMetadataSource(mySecurityMetadataSource);
-//                        object.setAccessDecisionManager(myAccessDecisionManager);
-//                        return object;
-//                    }
-//                }).anyRequest().authenticated()
-//                .and()
-                .authorizeRequests()
-//                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
-//                    @Override
-//                    public <O extends FilterSecurityInterceptor> O postProcess(O object) {
-//                        object.setSecurityMetadataSource(mySecurityMetadataSource);
-//                        object.setAccessDecisionManager(myAccessDecisionManager);
-//                        return object;
-//                    }
-//                })
+        /** 权限访问配置，默认FilterSecurityInterceptor */
+        http.authorizeRequests()
                 .antMatchers("/depart2").hasAnyRole("ROLE_DEPART2")
                 .anyRequest().authenticated();
-
-        /** 默认FilterSecurityInterceptor过滤器，要求全部请求需认证鉴权 */
-        http.authorizeRequests()
-                .anyRequest().authenticated();
-
         /** 新增自己的过滤器链，默认FilterSecurityInterceptor排序为最后个 */
-        http.addFilterAt(MyFilterSecurityInterceptor.init(), FilterSecurityInterceptor.class);
-
+        //http.addFilterAt(MyFilterSecurityInterceptor.init(), FilterSecurityInterceptor.class);
         /** 登录页配置 */
         http.formLogin()
                 //自己的登录页面
                 .loginPage("/login_h")
                 .loginProcessingUrl("/login")
                 .usernameParameter("myUserName").passwordParameter("myPassword")
+                //以上登录地址也属于可访问
                 .permitAll();
-
         /** 登出页配置 */
         http.logout()
                 .logoutSuccessUrl("/login_p")
                 .permitAll();
-
-         /** 异常处理 */
+        /** 异常处理 */
         http.exceptionHandling()
                 //未登录无权访问异常处理
                 .authenticationEntryPoint(macLoginUrlAuthenticationEntryPoint)
                 //已登录无权访问异常处理
                 .accessDeniedHandler(myAccessDeniedHandler);
-
         /** 其他配置 */
         http.csrf().disable();
     }
