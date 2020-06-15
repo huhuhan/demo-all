@@ -13,6 +13,7 @@
     <artifactId>demo2020</artifactId>
     <packaging>pom</packaging>
     <modules>
+        <module>auth-security</module>
     </modules>
 
 

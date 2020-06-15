@@ -1,0 +1,7 @@
+server:
+  port: 7015
+
+logging:
+  level:
+    org.springframework.security: debug
+    com.yh.auth.security: debug
