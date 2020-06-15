@@ -2,6 +2,7 @@ package com.yh.auth.security.authentication.handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,7 @@ import java.io.IOException;
 
 /**
  * 成功退出登录处理
- *
+ * 默认跳转登录页面， {@link SimpleUrlLogoutSuccessHandler }
  * @author yanghan
  * @date 2020/5/29
  */

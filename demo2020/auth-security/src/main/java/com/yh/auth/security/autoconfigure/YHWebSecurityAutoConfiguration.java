@@ -3,6 +3,7 @@ package com.yh.auth.security.autoconfigure;
 import com.yh.auth.security.authentication.filter.MyFilterSecurityInterceptor;
 import com.yh.auth.security.authentication.handler.MyAccessDeniedHandler;
 import com.yh.auth.security.authentication.handler.MyLoginUrlAuthenticationEntryPoint;
+import com.yh.auth.security.authentication.handler.MyLogoutSuccessHandler;
 import com.yh.auth.security.authentication.provider.DemoAuthenticationProvider;
 import com.yh.auth.security.authentication.provider.userdetails.MyUserDetailsManager;
 import com.yh.auth.security.crypto.CustomPwdEncoder;
@@ -79,14 +80,19 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
                 .permitAll();
         /** 登出页配置 */
         http.logout()
-                .logoutSuccessUrl("/login_p")
+                .logoutSuccessUrl("/login_h")
+                //适合前后端分离配置
+//                .logoutSuccessHandler(new MyLogoutSuccessHandler())
                 .permitAll();
         /** 异常处理 */
         http.exceptionHandling()
                 //未登录无权访问异常处理
                 .authenticationEntryPoint(macLoginUrlAuthenticationEntryPoint)
                 //已登录无权访问异常处理
-                .accessDeniedHandler(myAccessDeniedHandler);
+                .accessDeniedHandler(myAccessDeniedHandler)
+                //无效访问跳转的页面
+//                .accessDeniedPage("")
+                ;
         /** 其他配置 */
         http.csrf().disable();
     }
