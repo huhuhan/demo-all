@@ -16,6 +16,8 @@
     - demo thread ：spring async annotation
     - demo annotation
     - demo kafka
+- demo 2020
+    - auth security：基于demo 2018的demo security的完整版，熟悉源码内容
 - demo sc
     - sc eureka
     - sc clientA
