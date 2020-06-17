@@ -1,13 +1,19 @@
 package com.yh.auth.security.authentication.filter;
 
 import com.yh.auth.security.authentication.IgnoreChecker;
+import com.yh.auth.security.autoconfigure.YHSecurityProperties;
+import com.yh.auth.security.autoconfigure.YHWebSecurityAutoConfiguration;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.List;
 
 /**
  * 扩展，防止CSRF跨站请求攻击
@@ -17,6 +23,23 @@ import java.util.Enumeration;
  */
 @Slf4j
 public class RefererCsrfFilter extends IgnoreChecker implements Filter {
+
+    /**
+     * todo: 配置读取，设置拦截白名单地址，其他过滤器参考这方法
+     * @param yhSecurityProperties
+     * @return
+     */
+    public static RefererCsrfFilter init(YHSecurityProperties yhSecurityProperties) {
+        RefererCsrfFilter filter = new RefererCsrfFilter();
+        List<String> ignores = new ArrayList();
+        String csrfIgnores = yhSecurityProperties.getCsrfIgnores();
+        if (!StringUtils.isEmpty(csrfIgnores)) {
+            ignores = Arrays.asList(csrfIgnores.split(","));
+        }
+        //白名单地址
+        filter.setIgnores(ignores);
+        return filter;
+    }
 
     @Override
     public void destroy() {
@@ -64,6 +87,5 @@ public class RefererCsrfFilter extends IgnoreChecker implements Filter {
             String name = names.nextElement();
             log.info("报文头[" + name + "]:[" + request.getHeader(name) + "]");
         }
-
     }
 }

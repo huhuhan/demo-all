@@ -1,6 +1,7 @@
 package com.yh.auth.security.autoconfigure;
 
 import com.yh.auth.security.authentication.filter.MyFilterSecurityInterceptor;
+import com.yh.auth.security.authentication.filter.RefererCsrfFilter;
 import com.yh.auth.security.authentication.handler.MyAccessDeniedHandler;
 import com.yh.auth.security.authentication.handler.MyLoginUrlAuthenticationEntryPoint;
 import com.yh.auth.security.authentication.handler.MyLogoutSuccessHandler;
@@ -8,6 +9,8 @@ import com.yh.auth.security.authentication.provider.DemoAuthenticationProvider;
 import com.yh.auth.security.authentication.provider.userdetails.MyUserDetailsManager;
 import com.yh.auth.security.crypto.CustomPwdEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -15,6 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.web.csrf.CsrfFilter;
 
 /**
  * WebSecurity配置类
@@ -22,7 +26,13 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
  * @author yanghan
  * @date 2020/6/1
  */
-@EnableWebSecurity
+@EnableConfigurationProperties({YHSecurityProperties.class})
+@ConditionalOnProperty(
+        prefix = "yh.security",
+        value = "enabled",
+        matchIfMissing = true
+)
+//@EnableWebSecurity
 public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private DemoAuthenticationProvider demoAuthenticationProvider;
@@ -32,6 +42,10 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
     private MyAccessDeniedHandler myAccessDeniedHandler;
     @Autowired
     private MyLoginUrlAuthenticationEntryPoint macLoginUrlAuthenticationEntryPoint;
+    
+    /** 配置读取 */
+    @Autowired
+    private  YHSecurityProperties yhSecurityProperties;
 
     @Override
     public void init(WebSecurity web) throws Exception {
@@ -70,6 +84,10 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
                 .anyRequest().authenticated();
         /** 新增自己的过滤器链，默认FilterSecurityInterceptor排序为最后个 */
         //http.addFilterAt(MyFilterSecurityInterceptor.init(), FilterSecurityInterceptor.class);
+        
+        /** 新增其他过滤器 */
+        http.addFilterBefore(RefererCsrfFilter.init(yhSecurityProperties), CsrfFilter.class);
+        
         /** 登录页配置 */
         http.formLogin()
                 //自己的登录页面
@@ -96,5 +114,4 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
         /** 其他配置 */
         http.csrf().disable();
     }
-
 }
