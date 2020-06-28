@@ -21,6 +21,7 @@ import java.io.IOException;
 @Component
 public class MyFilter extends ZuulFilter {
     private Logger logger = LoggerFactory.getLogger(MyFilter.class);
+    private static final String MY_TOKEN = "yh";
 
     /**
      * 返回一个字符串代表过滤器的类型，在zuul中定义了四种不同生命周期的过滤器类型
@@ -69,19 +70,25 @@ public class MyFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
         logger.info(String.format("%s >> %s >>> %s", request.getRemoteAddr(), request.getMethod(), request.getRequestURL().toString()));
         Object accessToken = request.getParameter("token");
-        if (accessToken == null) {
-            logger.warn("token is empty");
-            ctx.setSendZuulResponse(false);
-            ctx.setResponseStatusCode(401);
-            try {
-                ctx.getResponse().getWriter().write("token is empty");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return null;
+        if (null == accessToken) {
+            this.tokenFilter(ctx, "token is empty");
+        } else if (!MY_TOKEN.equals(accessToken.toString())) {
+            this.tokenFilter(ctx, "token is error");
         }
         logger.info("ok");
         return null;
+    }
+
+    private void tokenFilter(RequestContext ctx, String msg) {
+        logger.warn("-----------------------------------------------");
+        logger.warn(msg);
+        logger.warn("-----------------------------------------------");
+        ctx.setSendZuulResponse(false);
+        ctx.setResponseStatusCode(401);
+        try {
+            ctx.getResponse().getWriter().write(msg);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

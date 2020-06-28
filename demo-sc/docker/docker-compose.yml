@@ -1,0 +1,88 @@
+﻿version: '3'
+
+networks:
+  cloud:
+    driver: bridge
+
+services:
+  eureka-server:
+    # 容器名
+    container_name: eureka-server
+    # 重启策略: 容器退出时总是重启容器
+    restart: always
+    # 构建镜像名称，没有build属性默认从远程仓库获取
+    image: eureka-server
+    # 指定设定上下文根目录，然后以该目录为准指定Dockerfile
+    build:
+      context: ./
+      dockerfile: Dockerfile-eureka
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 7800:8761
+    networks:
+      - cloud
+
+  zuul-server:
+    container_name: zuul-server
+    restart: always
+    image: zuul-server
+    build:
+      context: ./
+      dockerfile: Dockerfile-zuul
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 7801:8880
+    networks:
+      - cloud
+    depends_on:
+      - eureka-server
+
+  hello-api:
+    container_name: hello-api
+    restart: always
+    image: hello-api
+    build:
+      context: ./
+      dockerfile: Dockerfile-hello
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 7811:8881
+    networks:
+      - cloud
+    depends_on:
+      - eureka-server
+
+  feign-api:
+    container_name: feign-api
+    restart: always
+    image: feign-api
+    build:
+      context: ./
+      dockerfile: Dockerfile-feign
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 7822:8882
+    networks:
+      - cloud
+    depends_on:
+      - eureka-server
+
+  ribbon-api:
+    container_name: ribbon-api
+    restart: always
+    image: ribbon-api
+    build:
+      context: ./
+      dockerfile: Dockerfile-ribbon
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 7833:8883
+    networks:
+      - cloud
+    depends_on:
+      - eureka-server
