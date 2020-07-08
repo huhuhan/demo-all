@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.yh.demo</groupId>
-    <artifactId>demo-util</artifactId>
+    <artifactId>demo-java</artifactId>
 
     <dependencies>
         <dependency>
