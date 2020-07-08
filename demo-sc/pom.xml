@@ -15,8 +15,8 @@
     <modules>
         <module>sc-eureka</module>
         <module>sc-clientA</module>
-        <module>sc-feign</module>
-        <module>sc-ribbon</module>
+        <module>sc-clientB</module>
+        <module>sc-clientC</module>
         <module>sc-zuul</module>
     </modules>
 
