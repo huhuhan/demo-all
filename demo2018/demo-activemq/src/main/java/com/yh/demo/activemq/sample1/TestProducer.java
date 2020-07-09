@@ -1,7 +1,8 @@
 package com.yh.demo.activemq.sample1;
 
 public class TestProducer {
-    private final int producerCount = 3;
+    /** 发起请求次数 */
+    private final int producerCount = 1;
 
 
     public static void main(String[] args) {
@@ -14,8 +15,8 @@ public class TestProducer {
             e.printStackTrace();
         }
         new Thread(testMq.new ProducerMq(producer)).start();
-        new Thread(testMq.new ProducerMq(producer)).start();
-        new Thread(testMq.new ProducerMq(producer)).start();
+//        new Thread(testMq.new ProducerMq(producer)).start();
+//        new Thread(testMq.new ProducerMq(producer)).start();
     }
 
     private class ProducerMq implements Runnable {
@@ -30,7 +31,7 @@ public class TestProducer {
             for (int i = 0; i < producerCount; i++) {
                 try {
                     producer.sendMessage("YH-MQ");
-                    Thread.sleep(10000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

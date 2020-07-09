@@ -11,24 +11,26 @@ public class Consumer {
 
     private static final String PASSWORD = ActiveMQConnection.DEFAULT_PASSWORD;
 
-    private static final String BROKEN_URL = ActiveMQConnection.DEFAULT_BROKER_URL;
-
+    private static final String BROKEN_URL = "tcp://192.168.0.82:61616";//ActiveMQConnection.DEFAULT_BROKER_URL;
+    //连接工厂
     ConnectionFactory connectionFactory;
-
+    //连接对象
     Connection connection;
-
+    //连接事务
     Session session;
-
+    //本地线程池，存储消息消费者
     ThreadLocal<MessageConsumer> threadLocal = new ThreadLocal<>();
     AtomicInteger count = new AtomicInteger();
 
-    private final int msgCount = 3;
+    /** 一次请求，消费的数量，即一次出队列的数量 */
+    private final int msgCount = 100;
 
     public void init() {
         try {
             connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKEN_URL);
             connection = connectionFactory.createConnection();
             connection.start();
+            //false非事务类型，消息确认类型
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
         } catch (JMSException e) {
             e.printStackTrace();
@@ -49,19 +51,21 @@ public class Consumer {
             }
             System.out.println(Thread.currentThread().getName() + "消费者，开始消费消息");
             for (int i = 0; i < msgCount; i++) {
-                Thread.sleep(1000);
+//                Thread.sleep(1000);
+                //等候响应，直到获取消息
                 TextMessage msg = (TextMessage) consumer.receive();
                 if (msg != null) {
+                    //确认已接收
                     msg.acknowledge();
-                    System.out.println(Thread.currentThread().getName() + ": Consumer:我是消费者，我正在消费Msg" + msg.getText() + "--->" + count.getAndIncrement());
+                    System.out.println(Thread.currentThread().getName() + ": Consumer:我是消费者，我正在消费Msg【" + msg.getText() + "】--->" + count.getAndIncrement());
                 } else {
                     break;
                 }
             }
-            System.out.println(Thread.currentThread().getName() + "消费者，结束消费，共" + msgCount + "条记录");
+            System.out.println(Thread.currentThread().getName() + "消费者，结束消费，一次请求共" + msgCount + "条记录");
         } catch (JMSException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -12,7 +12,7 @@ public class Producer {
     //ActiveMq 的默认登录密码
     private static final String PASSWORD = ActiveMQConnection.DEFAULT_PASSWORD;
     //ActiveMQ 的链接地址
-    private static final String BROKEN_URL = ActiveMQConnection.DEFAULT_BROKER_URL;
+    private static final String BROKEN_URL = "tcp://192.168.0.82:61616";//ActiveMQConnection.DEFAULT_BROKER_URL;
 
     AtomicInteger count = new AtomicInteger(0);
     //链接工厂
@@ -22,8 +22,8 @@ public class Producer {
     //事务管理
     Session session;
     ThreadLocal<MessageProducer> threadLocal = new ThreadLocal<>();
-
-    private final int msgCount = 3;
+    /** 一次请求，生产的数量 */
+    private final int msgCount = 111;
 
     public void init() {
         try {
@@ -33,7 +33,7 @@ public class Producer {
             connection = connectionFactory.createConnection();
             //开启链接
             connection.start();
-            //创建一个事务（这里通过参数可以设置事务的级别）
+            //创建一个事务（这里通过参数可以设置事务的级别），true事务类型，消息确认类型
             session = connection.createSession(true, Session.SESSION_TRANSACTED);
         } catch (JMSException e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class Producer {
             }
             System.out.println(Thread.currentThread().getName() + "生产者，开始生产消息");
             for (int i = 0; i < msgCount; i++) {
-                Thread.sleep(1000);
+//                Thread.sleep(500);
                 int num = count.getAndIncrement();
                 //创建一条消息
                 String msgTT = Thread.currentThread().getName() +
@@ -66,10 +66,10 @@ public class Producer {
                 //提交事务
                 session.commit();
             }
-            System.out.println(Thread.currentThread().getName() + "生产者，结束生产，共" + msgCount + "条记录");
+            System.out.println(Thread.currentThread().getName() + "生产者，结束生产，一次请求共" + msgCount + "条记录");
         } catch (JMSException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
