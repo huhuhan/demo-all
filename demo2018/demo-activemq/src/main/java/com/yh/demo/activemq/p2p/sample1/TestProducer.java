@@ -1,22 +1,19 @@
-package com.yh.demo.activemq.sample1;
+package com.yh.demo.activemq.p2p.sample1;
 
 public class TestProducer {
     /** 发起请求次数 */
-    private final int producerCount = 1;
+    private final int producerCount = 2;
 
 
     public static void main(String[] args) {
         Producer producer = new Producer();
         producer.init();
-        TestProducer testMq = new TestProducer();
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        new Thread(testMq.new ProducerMq(producer)).start();
-//        new Thread(testMq.new ProducerMq(producer)).start();
-//        new Thread(testMq.new ProducerMq(producer)).start();
+        new Thread(new TestProducer().new ProducerMq(producer)).start();
     }
 
     private class ProducerMq implements Runnable {
@@ -28,14 +25,17 @@ public class TestProducer {
 
         @Override
         public void run() {
+            int allCount = 0;
             for (int i = 0; i < producerCount; i++) {
                 try {
-                    producer.sendMessage("YH-MQ");
+                    allCount += producer.sendMessage("YH-MQ");
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+            System.out.println(Thread.currentThread().getName() + "生产者，结束生产，所有请求共" + allCount + "条记录");
+            producer.connectionClose();
         }
     }
 }

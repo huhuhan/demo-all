@@ -1,4 +1,4 @@
-package com.yh.demo.activemq.sample1;
+package com.yh.demo.activemq.p2p.sample1;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -23,7 +23,7 @@ public class Producer {
     Session session;
     ThreadLocal<MessageProducer> threadLocal = new ThreadLocal<>();
     /** 一次请求，生产的数量 */
-    private final int msgCount = 111;
+    private final int msgCount = 11;
 
     public void init() {
         try {
@@ -40,7 +40,7 @@ public class Producer {
         }
     }
 
-    public void sendMessage(String disname) {
+    public int sendMessage(String disname) {
         try {
             //创建一个消息队列
             Queue queue = session.createQueue(disname);
@@ -67,10 +67,23 @@ public class Producer {
                 session.commit();
             }
             System.out.println(Thread.currentThread().getName() + "生产者，结束生产，一次请求共" + msgCount + "条记录");
+            return msgCount;
         } catch (JMSException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return 0;
+    }
+
+
+    public void connectionClose(){
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (JMSException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

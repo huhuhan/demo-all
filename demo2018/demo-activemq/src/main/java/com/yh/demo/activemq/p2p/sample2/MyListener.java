@@ -1,4 +1,4 @@
-package com.yh.demo.activemq.sample2;
+package com.yh.demo.activemq.p2p.sample2;
 
 import org.apache.activemq.command.ActiveMQMapMessage;
 

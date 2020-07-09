@@ -1,4 +1,4 @@
-package com.yh.demo.activemq.sample1;
+package com.yh.demo.activemq.p2p.sample1;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -11,7 +11,7 @@ public class Consumer {
 
     private static final String PASSWORD = ActiveMQConnection.DEFAULT_PASSWORD;
 
-    private static final String BROKEN_URL = "tcp://192.168.0.82:61616";//ActiveMQConnection.DEFAULT_BROKER_URL;
+    private static final String BROKER_URL = "tcp://192.168.0.82:61616";//ActiveMQConnection.DEFAULT_BROKER_URL;
     //连接工厂
     ConnectionFactory connectionFactory;
     //连接对象
@@ -27,7 +27,7 @@ public class Consumer {
 
     public void init() {
         try {
-            connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKEN_URL);
+            connectionFactory = new ActiveMQConnectionFactory(USERNAME, PASSWORD, BROKER_URL);
             connection = connectionFactory.createConnection();
             connection.start();
             //false非事务类型，消息确认类型
@@ -63,10 +63,21 @@ public class Consumer {
                 }
             }
             System.out.println(Thread.currentThread().getName() + "消费者，结束消费，一次请求共" + msgCount + "条记录");
+            this.connectionClose();
         } catch (JMSException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void connectionClose(){
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (JMSException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
