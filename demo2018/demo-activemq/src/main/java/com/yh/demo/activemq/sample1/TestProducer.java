@@ -1,4 +1,4 @@
-package com.yh.demo.activemq.p2p.sample1;
+package com.yh.demo.activemq.sample1;
 
 public class TestProducer {
     /** 发起请求次数 */

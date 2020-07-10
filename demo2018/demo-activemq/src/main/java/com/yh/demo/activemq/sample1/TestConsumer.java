@@ -1,4 +1,4 @@
-package com.yh.demo.activemq.p2p.sample1;
+package com.yh.demo.activemq.sample1;
 
 /**
  * 同个队列的多个消费者一般平均获取到消息数量，消费
