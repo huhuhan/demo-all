@@ -16,8 +16,10 @@ public class HelloProperties {
     /** 开启starter的匹配属性，测试特意用String类型 */
     private String enabled;
     private final String MSG = "World";
+    /** 信息 */
     private String msg = MSG;
-    List<String> members = new ArrayList<>();
+    /** 成员集合 */
+    private List<String> members = new ArrayList<>();
 
     public String getEnabled() {
         return enabled;
