@@ -36,7 +36,8 @@
     - demo annotation
     - demo kafka
 - demo 2020
-    - auth security：基于demo 2018的demo security的完整版，熟悉源码内容
+    - auth security ：基于demo 2018的demo security的完整版，熟悉源码内容
+    - demo ureport : 开源报表依赖包，集成项目
 - demo sc
     - sc eureka
     - sc clientA

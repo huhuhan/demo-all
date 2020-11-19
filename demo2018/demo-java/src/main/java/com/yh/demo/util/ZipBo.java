@@ -150,8 +150,8 @@ public class ZipBo {
 
 
     /**
-     * 采用jdk自带的ZipInputStream解压zip文件，不支持中文文件名条目（utf8编码可能可以，没测试）
-     * 结果 toDir/压缩包内文件 (不包含zip文件名)
+     * 采用jdk自带的ZipInputStream解压zip
+     * 结果：toDir/压缩包内文件 (不包含zip文件名)
      *
      * @param zipFile
      * @param toDir
