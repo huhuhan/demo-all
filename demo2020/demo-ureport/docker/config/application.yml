@@ -1,0 +1,48 @@
+server:
+  port: 8279
+
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.0.82:5432/ureport
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: abc123456
+    druid:
+      #配置初始化大小、最大、最小
+      initial-size: 5
+      max-active: 20
+      min-idle: 10
+      #获取连接等待时间
+      max-wait: 60000
+      #连接在池中的生存时间
+      min-evictable-idle-time-millis: 60000
+      #检测间隔时间，关闭空闲连接
+      time-between-eviction-runs-millis: 2000
+      keep-alive: true
+      filters: stat
+      # 开启监控页面
+      stat-view-servlet:
+        enabled: true
+        # IP白名单
+        allow: 127.0.0.1
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/META-INF/resources/,file:${uploadfile.path}
+  #文件上传
+  servlet:
+    # 文件上传大小限制
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+
+#log日志配置
+logging:
+  #文件输入绝对路径
+  file: /usr/fwreport/log
+  config: classpath:config/logback-dev.xml
+
+# ureport Mysql 存储
+ureport.postgresql.provider:
+   prefix: yh-
+   disabled: false

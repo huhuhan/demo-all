@@ -1,0 +1,22 @@
+﻿version: '3'
+
+networks:
+  ureport:
+    driver: bridge
+
+services:
+  ureport:
+    container_name: ureport
+    restart: always
+    # 自动从远程仓库下载
+    image: 101.91.199.54:8212/ureport:2.0
+    environment:
+     TZ: Asia/Shanghai
+    ports:
+    # 修改为开放端口
+     - 8279:8279
+    volumes:
+    # 修改为本地路径
+      - /home/java-web/ureport/config:/config
+    networks:
+      - ureport

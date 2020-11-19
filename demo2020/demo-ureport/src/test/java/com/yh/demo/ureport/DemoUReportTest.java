@@ -30,10 +30,10 @@ public class DemoUReportTest {
 
         try (FileOutputStream fo = new FileOutputStream("D:\\YH\\tmp\\export-demo.xlsx")) {
             // 报表文件，调用加载报表方法loadReport
-            String fileName = "yh" + "demo" + ".ureport.xml";
+            String fileName = "yh-" + "demo" + ".ureport.xml";
             ExportConfigure exportConfigure = new ExportConfigureImpl(fileName, parameters, fo);
             exportManager.exportExcel(exportConfigure);
-            exportManager.exportPdf(exportConfigure);
+            //exportManager.exportPdf(exportConfigure);
         } catch (IOException e) {
             e.printStackTrace();
         }
