@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: yh
+  application:
+    name: ureport
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+
+
+

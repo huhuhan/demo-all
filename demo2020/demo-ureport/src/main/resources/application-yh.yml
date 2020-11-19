@@ -1,0 +1,32 @@
+server:
+  port: 8279
+
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.0.82:5432/ureport
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: abc123456
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/META-INF/resources/,file:${uploadfile.path}
+  #文件上传
+  servlet:
+    # 文件上传大小限制
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+
+#log日志配置
+logging:
+  #文件输入绝对路径
+  file: /opt/ureport/log/out.log
+
+
+# ureport 数据库源
+ureport:
+  provider:
+    postgresql:
+      prefix: yh-
+      disabled: false
