@@ -15,6 +15,7 @@
     <modules>
         <module>auth-security</module>
         <module>demo-ureport</module>
+        <module>demo-datasource</module>
     </modules>
 
 
