@@ -12,11 +12,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
- * 扩展，未登录访问异常处理类
- * 默认跳转登录页面， {@link LoginUrlAuthenticationEntryPoint }
+ * 扩展：未登录访问，异常处理类
+ * 默认实现类 {@link LoginUrlAuthenticationEntryPoint }
  *
  * @author yanghan
  * @date 2020/6/1

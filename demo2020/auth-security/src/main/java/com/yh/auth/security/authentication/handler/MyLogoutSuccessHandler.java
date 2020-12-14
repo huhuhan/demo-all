@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 成功退出登录处理
- * 默认跳转登录页面， {@link SimpleUrlLogoutSuccessHandler }
+ * 扩展：成功退出登录，处理类
+ * 默认实现类 {@link SimpleUrlLogoutSuccessHandler }
  * @author yanghan
  * @date 2020/5/29
  */

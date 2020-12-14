@@ -4,17 +4,17 @@ import com.yh.auth.security.util.TempUtils;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
- * 扩展，权限异常处理类
- * 参考，默认为接口的其他实现类
+ * 扩展：无权访问，异常处理类
+ * 默认实现类 {@link AccessDeniedHandlerImpl }
  *
  * @author yanghan
  * @date 2020/6/1
