@@ -29,7 +29,11 @@ public class Java8FunctionTest {
                 System.out.println("普通写法");
             }
         }).start();
-        new Thread(() -> System.out.println("Runnable接口的匿名内部类创建线程")).start();
+        new Thread(() -> {
+            System.out.println("函数式编程写法");
+            System.out.println("函数式编程写法");
+        }).start();
+        new Thread(() -> System.out.println("函数式编程写法|若只有一行代码可以简化前后的{}符号")).start();
     }
 
     @Test

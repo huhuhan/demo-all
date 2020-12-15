@@ -1,11 +1,13 @@
 package com.yh.demo.java8.lamada;
 
 /**
+ * 测试类
  * @author yanghan
  * @date 2020/12/14
  */
 public class MySystemOutPrint<T> {
     public MySystemOutPrint() {
+        System.out.println("无参构造方法");
     }
 
     public MySystemOutPrint(T t) {
