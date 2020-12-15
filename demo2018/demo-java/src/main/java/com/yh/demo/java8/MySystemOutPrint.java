@@ -1,4 +1,4 @@
-package com.yh.demo.java8.lamada;
+package com.yh.demo.java8;
 
 /**
  * 测试类

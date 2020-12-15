@@ -1,4 +1,4 @@
-package com.yh.demo.java8.lamada;
+package com.yh.demo.java8;
 
 /**
  * 函数式接口，demo

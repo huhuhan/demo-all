@@ -1,7 +1,7 @@
-package com.yh.demo;
+package com.yh.demo.java8;
 
-import com.yh.demo.java8.lamada.MyFunctionalInterface;
-import com.yh.demo.java8.lamada.MySystemOutPrint;
+import com.yh.demo.java8.MyFunctionalInterface;
+import com.yh.demo.java8.MySystemOutPrint;
 import org.junit.Test;
 
 import java.util.Objects;
@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
-import static com.yh.demo.java8.lamada.MyFunctionalInterface.staticTodo;
+import static com.yh.demo.java8.MyFunctionalInterface.staticTodo;
 
 /**
  * @author yanghan
