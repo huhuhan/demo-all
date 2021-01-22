@@ -80,7 +80,9 @@ public class YHWebSecurityAutoConfiguration extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception {
         /** 权限访问配置，默认FilterSecurityInterceptor */
         http.authorizeRequests()
-                .antMatchers("/depart2").hasAnyRole("ROLE_DEPART2")
+                // 不用加ROLE_前缀，源码内部判断自动拼接
+                .antMatchers("/depart2").hasAnyRole("DEPART2")
+                // 其他任何请求只有认证过（登录）就可访问（即不鉴权）
                 .anyRequest().authenticated();
         /** 新增自己的过滤器链，默认FilterSecurityInterceptor排序为最后个 */
         //http.addFilterAt(MyFilterSecurityInterceptor.init(), FilterSecurityInterceptor.class);
