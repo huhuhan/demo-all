@@ -60,7 +60,7 @@
         > - 系统数据库源接口：SysDataSourceService
         > - 系统数据库源转化接口：DataSourceService
 
-
+ - 通过/druid/index.html查看
 
 
 

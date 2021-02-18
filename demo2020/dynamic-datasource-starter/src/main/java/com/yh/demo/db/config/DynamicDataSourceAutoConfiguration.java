@@ -1,11 +1,13 @@
 package com.yh.demo.db.config;
 
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure;
 import com.yh.demo.db.dynamic.MyDynamicDataSourceProvider;
 import com.yh.demo.db.dynamic.MyDynamicRoutingDataSource;
 import com.yh.demo.db.dynamic.impl.DefaultDynamicDataSourceProvider;
 import com.yh.demo.db.properties.DataSourceProperty;
 import com.yh.demo.db.properties.DynamicDataSourceProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -18,13 +20,13 @@ import java.util.Map;
 
 /**
  * 自动化配置类
- *
+ * 优先于Druid自动化加载配置
  * @author yanghan
  * @date 2021/2/4
  */
 @Configuration
 @EnableConfigurationProperties({DynamicDataSourceProperties.class})
-//@AutoConfigureBefore({DataSourceAutoConfiguration.class})
+@AutoConfigureBefore({DruidDataSourceAutoConfigure.class})
 @ConditionalOnProperty(
         prefix = "spring.datasource.dynamic-yh",
         name = {"enabled"},
