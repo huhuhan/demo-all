@@ -1,10 +1,9 @@
 package com.yh.demo.java8;
 
-import com.yh.demo.java8.MyFunctionalInterface;
-import com.yh.demo.java8.MySystemOutPrint;
 import org.junit.Test;
 
 import java.util.Objects;
+import java.util.concurrent.FutureTask;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -22,17 +21,22 @@ public class Java8FunctionTest {
     }
 
     @Test
-    public void test1() {
+    public void test1() throws Exception {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("普通写法");
+                System.out.println("普通写法|Runnable接口的run方法");
             }
         }).start();
-        new Thread(() -> {
-            System.out.println("函数式编程写法");
-            System.out.println("函数式编程写法");
-        }).start();
+
+        FutureTask<String> futureTask = new FutureTask<>(() -> {
+            Thread.sleep(1000);
+            System.out.println("函数式编程写法|Callable接口的call方法");
+            return "call方法返回值";
+        });
+        futureTask.run();
+        System.out.println(futureTask.get());
+
         new Thread(() -> System.out.println("函数式编程写法|若只有一行代码可以简化前后的{}符号")).start();
     }
 
