@@ -16,7 +16,7 @@
         <module>demo-aop</module>
         <module>demo-annotation</module>
         <module>demo-redis</module>
-        <module>demo-thread</module>
+        <module>demo-springboot</module>
         <module>demo-kafka</module>
         <module>demo-mybatis-plus</module>
     </modules>

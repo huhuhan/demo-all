@@ -32,7 +32,9 @@
 - demo 2019
     - demo aop ：by xml 
     - demo redis
-    - demo thread ：spring async annotation
+    - demo springboot ：框架自带应用
+       - 异常线程（池），注解@Async
+       - 事件、监听器，ApplicationListener
     - demo annotation
     - demo kafka
 - demo 2020
