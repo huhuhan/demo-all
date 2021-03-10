@@ -31,18 +31,28 @@ abstract class Game {
     /** final修饰，不可变 */
     public final void play() {
 
-        //初始化游戏
-        initialize();
+        if (this.isSupported()) {
+            //初始化游戏
+            initialize();
 
-        //开始游戏
-        startPlay();
+            //开始游戏
+            startPlay();
 
-        //结束游戏
-        endPlay();
+            //结束游戏
+            endPlay();
+        } else {
+            System.out.println("游戏不支持！");
+        }
     }
+
+    abstract boolean isSupported();
 }
 
 class Cricket extends Game {
+    @Override
+    boolean isSupported() {
+        return true;
+    }
 
     @Override
     void endPlay() {
@@ -61,6 +71,10 @@ class Cricket extends Game {
 }
 
 class Football extends Game {
+    @Override
+    boolean isSupported() {
+        return false;
+    }
 
     @Override
     void endPlay() {
