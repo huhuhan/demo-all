@@ -1,6 +1,11 @@
 server:
     port: 8761
-
+spring:
+  profiles:
+    active: dev
+  application:
+    #bootstrap中无效，加载优先于pom，在application中有效
+    name: hs-eureka
 eureka:
     instance:
         hostname: localhost

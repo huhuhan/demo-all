@@ -29,7 +29,9 @@ public class CommonFallbackProvider implements FallbackProvider {
     }
 
     @Override
-    public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
+    public ClientHttpResponse fallbackResponse(String r, Throwable c) {
+        final String route = r;
+        final Throwable cause = c;
         return new ClientHttpResponse() {
             @Override
             public HttpStatus getStatusCode() throws IOException {
