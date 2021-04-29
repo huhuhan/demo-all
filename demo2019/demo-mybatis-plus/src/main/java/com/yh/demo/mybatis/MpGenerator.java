@@ -1,7 +1,6 @@
 package com.yh.demo.mybatis;
 
 import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
@@ -26,9 +25,19 @@ import java.util.Scanner;
  */
 @SuppressWarnings("all")
 public class MpGenerator {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/test_db?useUnicode=true&autoReconnect=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai";
+    private static final String BasePath = "/demo2019/demo-mybatis-plus/temp";
+
+    private static final DbType DB_TYPE = DbType.MYSQL;
+    private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/tes_db?useUnicode=true&autoReconnect=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "yanghan";
+
+//    private static final DbType DB_TYPE = DbType.POSTGRE_SQL;
+//    private static final String DB_DRIVER = "org.postgresql.Driver";
+//    private static final String DB_URL = "jdbc:postgresql://192.168.0.82:5432/tes_db";
+//    private static final String DB_USERNAME = "postgres";
+//    private static final String DB_PASSWORD = "postgres";
 
     private static final String PACKAGE = "com.yhcloud.provider";
     private static final String CONTROLLER = "rest";
@@ -38,7 +47,7 @@ public class MpGenerator {
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
         String userDir = System.getProperty("user.dir");
-        String projectPath = userDir + "/demo2019/demo-mybatis-plus";
+        String projectPath = userDir + BasePath;
 
         /**
          * 全局配置
@@ -65,7 +74,7 @@ public class MpGenerator {
         mpg.setDataSource(
                 new DataSourceConfig()
                         // 数据库类型
-                        .setDbType(DbType.MYSQL)
+                        .setDbType(DB_TYPE)
                         //.setTypeConvert(new MySqlTypeConvert() {
                         //    // 自定义数据库表字段类型转换【可选】
                         //    @Override
@@ -77,7 +86,8 @@ public class MpGenerator {
                         //        return super.processTypeConvert(globalConfig, fieldType);
                         //    }
                         //})
-                        .setDriverName("com.mysql.cj.jdbc.Driver")
+                        .setSchemaName("public")
+                        .setDriverName(DB_DRIVER)
                         .setUsername(DB_USERNAME)
                         .setPassword(DB_PASSWORD)
                         .setUrl(DB_URL)
