@@ -1,8 +1,9 @@
-package com.yh.demo.base;
+package com.yh.demo.base.jdbc;
 
 import java.sql.*;
 
 /**
+ * 基本功能演示
  * @author yanghan
  * @date 2021/4/29
  */
