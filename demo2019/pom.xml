@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>demo-aop</module>
         <module>demo-annotation</module>
         <module>demo-redis</module>
         <module>demo-springboot</module>

@@ -1,4 +1,4 @@
-package com.yh.demo.aop;
+package com.yh.demo.aop.handler;
 
 public class LogAspectHandler {
     public void LogBefore() {

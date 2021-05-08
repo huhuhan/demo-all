@@ -7,13 +7,13 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
-    <bean id="helloWorldService" class="com.yh.demo.aop.HelloWorldService" />
-    <bean id="timeAspectHandler" class="com.yh.demo.aop.TimeAspectHandler" />
-    <bean id="logAspectHandler" class="com.yh.demo.aop.LogAspectHandler" />
+    <bean id="helloWorldService" class="com.yh.demo.aop.xml.HelloWorldService" />
+    <bean id="timeAspectHandler" class="com.yh.demo.aop.xml.TimeAspectHandler" />
+    <bean id="logAspectHandler" class="com.yh.demo.aop.xml.LogAspectHandler" />
 
     <aop:config>
         <aop:aspect id="time" ref="timeAspectHandler" order="1">
-            <aop:pointcut id="addAllMethod" expression="execution(* com.yh.demo.aop.HelloWorldService.*(..))" />
+            <aop:pointcut id="addAllMethod" expression="execution(* com.yh.demo.aop.xml.HelloWorldService.*(..))" />
             <aop:before method="printTime" pointcut-ref="addAllMethod" />
             <aop:after method="printTime" pointcut-ref="addAllMethod" />
         </aop:aspect>
@@ -21,7 +21,7 @@
 
     <aop:config>
         <aop:aspect id="time" ref="logAspectHandler" order="2">
-            <aop:pointcut id="doMethod" expression="execution(* com.yh.demo.aop.HelloWorldService.do*(..))" />
+            <aop:pointcut id="doMethod" expression="execution(* com.yh.demo.aop.xml.HelloWorldService.do*(..))" />
             <aop:before method="LogBefore" pointcut-ref="doMethod" />
             <aop:after method="LogAfter" pointcut-ref="doMethod" />
         </aop:aspect>
