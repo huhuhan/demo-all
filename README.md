@@ -11,9 +11,9 @@
     - demo socket ： java IO、NIO、AIO
     - demo java ：java code by main method
 - demo 2019
-    - demo aop ：by xml 
     - demo redis
     - demo springboot ：框架自带应用
+       - 切面编程AOP，注解@Aspect
        - 异常线程（池），注解@Async
        - 事件、监听器，ApplicationListener
     - demo annotation
