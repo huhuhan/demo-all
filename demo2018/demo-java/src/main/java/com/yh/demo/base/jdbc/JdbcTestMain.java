@@ -2,6 +2,7 @@ package com.yh.demo.base.jdbc;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.log4j.BasicConfigurator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -21,6 +22,9 @@ public class JdbcTestMain {
     private final static CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(THREAD_NUM);
 
     public static void main(String[] args) {
+        // 日志配置
+        BasicConfigurator.configure();
+
         queryByPool();
     }
 
