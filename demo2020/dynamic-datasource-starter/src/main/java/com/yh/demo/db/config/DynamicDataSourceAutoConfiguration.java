@@ -7,15 +7,18 @@ import com.yh.demo.db.dynamic.impl.DefaultDynamicDataSourceProvider;
 import com.yh.demo.db.properties.DataSourceProperty;
 import com.yh.demo.db.properties.DynamicDataSourceProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.util.Map;
 
 /**
@@ -48,7 +51,7 @@ public class DynamicDataSourceAutoConfiguration {
 
 
     /**
-     * 默认数据库源
+     * 自定义数据库源【yhDataSource】，方面理解原理
      * bean命名，区分默认的datasource，否则需要要移除其他数据库源的自动化配置
      * @param dynamicDataSourceProvider
      * @return
@@ -62,9 +65,11 @@ public class DynamicDataSourceAutoConfiguration {
         return dynamicRoutingDataSource;
     }
 
-    @Bean
-    @ConditionalOnMissingBean(JdbcTemplate.class)
-    public JdbcTemplate jdbcTemplate(MyDynamicRoutingDataSource dataSource){
-        return new JdbcTemplate(dataSource);
-    }
+//    @Bean
+//    @ConditionalOnMissingBean
+//    public SqlSessionFactory sqlSessionFactory(@Qualifier("yhDataSource") DataSource adsDataSource) throws Exception {
+//        final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+//        sessionFactory.setDataSource(adsDataSource);
+//        return sessionFactory.getObject();
+//    }
 }

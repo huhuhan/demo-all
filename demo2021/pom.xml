@@ -10,6 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>demo2021</artifactId>
-
-
+    <packaging>pom</packaging>
+    <modules>
+        <module>demo-druid</module>
+    </modules>
 </project>

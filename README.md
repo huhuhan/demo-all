@@ -27,4 +27,6 @@
     - sc clientA
     - sc feign
     - sc ribbon
-    - sc zuul
+    - sc zuul 
+- demo 2021
+    - demo-druid : 多数据源例子 + dynamic-datasource-starter的应用
