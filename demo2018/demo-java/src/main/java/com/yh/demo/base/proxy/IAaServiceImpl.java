@@ -15,5 +15,7 @@ public class IAaServiceImpl implements IAaService, IBbService {
     @Override
     public void b1() {
         System.out.println("this is IBbService.b1");
+
+        this.a1();
     }
 }
