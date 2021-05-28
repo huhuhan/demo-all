@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class DemoServiceImpl {
 
     public String demo() throws Exception {
-        System.err.println("by DemoServiceImpl");
+        System.out.println("by DemoServiceImpl");
         //throw new Exception(" Demo Error");
         return "demoValue";
     }

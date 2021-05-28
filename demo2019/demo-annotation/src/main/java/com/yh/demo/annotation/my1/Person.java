@@ -9,7 +9,7 @@ public class Person {
 
     @PersonAnnotation(name = "XiaoMing")
     public void sayWhat(String name) {
-        System.err.println("sayWhat: " + name);
+        System.out.println("sayWhat: " + name);
     }
 
     public String getName() {

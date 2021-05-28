@@ -13,16 +13,16 @@ public class C2 extends C1  {
      */
     @Override
     public void c1Todo() {
-        System.err.println("by C2 extends C1");
+        System.out.println("by C2 extends C1");
     }
 
     @DemoAop
     public void c2Todo() {
-        System.err.println("by C2");
+        System.out.println("by C2");
     }
 
     public void c2TodoByParam(String param) {
-        System.err.println("by C2 with " + param);
+        System.out.println("by C2 with " + param);
     }
 
 }

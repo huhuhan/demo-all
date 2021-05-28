@@ -26,6 +26,6 @@ public class TestFactory {
     }
 
     public static void main(String[] args) {
-        System.err.println(TestFactory.create().getName());
+        System.out.println(TestFactory.create().getName());
     }
 }

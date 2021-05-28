@@ -59,7 +59,7 @@ public class Client implements Runnable {
             while (true) {
                 Scanner scanner = new Scanner(System.in);
                 String inRead = scanner.nextLine();
-                System.err.println(inRead + "|" + inRead.length());
+                System.out.println(inRead + "|" + inRead.length());
                 if (inRead.equals("end")) {
                     break;
                 } else {
@@ -104,7 +104,7 @@ public class Client implements Runnable {
             c1.write("c1 aaa");
             c2.write("c2 bbbb");
             c3.write("c3 ccccc");
-            System.err.println("c3 write again");
+            System.out.println("c3 write again");
             c3.write("c3 ccccc again");
         } catch (Exception e) {
             e.printStackTrace();

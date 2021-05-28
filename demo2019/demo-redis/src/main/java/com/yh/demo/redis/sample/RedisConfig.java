@@ -61,8 +61,8 @@ public class RedisConfig extends JCacheConfigurerSupport {
 //        jedisPoolConfig.setMaxTotal(maxActive);
 //        jedisPoolConfig.setMinIdle(minIdle);
 //        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, null);
-//        System.err.println("JedisPool注入成功！");
-//        System.err.println("redis地址：" + host + ":" + port);
+//        System.out.println("JedisPool注入成功！");
+//        System.out.println("redis地址：" + host + ":" + port);
 //        return  jedisPool;
 //    }
 

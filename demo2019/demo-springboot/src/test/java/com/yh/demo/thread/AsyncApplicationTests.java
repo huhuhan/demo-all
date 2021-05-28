@@ -30,13 +30,13 @@ public class AsyncApplicationTests {
      */
     @Test
     public void testAsyncDemo() throws InterruptedException, ExecutionException {
-        System.err.println("part1");
+        System.out.println("part1");
         asyncDemo.asyncInvokeSimplest();
-        System.err.println("part2");
+        System.out.println("part2");
         asyncDemo.asyncInvokeWithParameter("test");
-        System.err.println("part3");
+        System.out.println("part3");
         Future<String> future = asyncDemo.asyncInvokeReturnFuture(100);
-        System.err.println("future get " + future.get());
+        System.out.println("future get " + future.get());
     }
 
 
@@ -50,13 +50,13 @@ public class AsyncApplicationTests {
      */
     @Test
     public void testAsyncExceptionDemo() throws InterruptedException, ExecutionException {
-        System.err.println("part1");
+        System.out.println("part1");
         asyncExceptionDemo.asyncInvokeSimplest();
-        System.err.println("part2");
+        System.out.println("part2");
         asyncExceptionDemo.asyncInvokeWithException("test");
-        System.err.println("part3");
+        System.out.println("part3");
         Future<String> future = asyncExceptionDemo.asyncInvokeReturnFuture(100);
-        System.err.println("future get " + future.get());
+        System.out.println("future get " + future.get());
     }
 
 

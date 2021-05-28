@@ -28,7 +28,7 @@ public class MyInvocationHandler implements InvocationHandler {
      */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        System.err.println("代理对象的InvocationHandler将调用目标对象方法：" + method.getName());
+        System.out.println("代理对象的InvocationHandler将调用目标对象方法：" + method.getName());
         long starTime = System.nanoTime();
         // 执行目标对象的方法
         method.invoke(this.target, args);

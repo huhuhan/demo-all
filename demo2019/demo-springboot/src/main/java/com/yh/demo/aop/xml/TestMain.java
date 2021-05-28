@@ -14,7 +14,7 @@ public class TestMain {
         HelloWorldService helloWorldService = (HelloWorldService) ctx.getBean("helloWorldService");
 
         helloWorldService.printHelloWorld();
-        System.err.println();
+        System.out.println();
         helloWorldService.doPrint();
     }
 }

@@ -23,7 +23,7 @@ public class Server {
             while (true) {
                 socket = serverSocket.accept();
                 pool.execute(new ServerHandler(socket));
-                System.err.println("1");
+                System.out.println("1");
             }
 
         } catch (Exception e) {
@@ -45,7 +45,7 @@ class HandlerExecutorPool {
     private ExecutorService executor;
 
     public HandlerExecutorPool(int maxPoolSize, int queueSize) {
-        System.err.println("2");
+        System.out.println("2");
         this.executor = Executors.newSingleThreadExecutor();
 //        this.executor = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), maxPoolSize, 120L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(queueSize));
     }

@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class DemoAspect {
     @PostConstruct
     public void init() {
-        System.err.println("DemoAspect init");
+        System.out.println("DemoAspect init");
     }
 
     /**

@@ -10,6 +10,6 @@ import com.yh.demo.aop.annotation.DemoAopClass;
 public class C1 {
 
     public void c1Todo(){
-        System.err.println("by C1");
+        System.out.println("by C1");
     }
 }

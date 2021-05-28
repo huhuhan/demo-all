@@ -29,7 +29,7 @@ public class RedisConfigTest2 {
         redisString.setKey("hello2", "Hello Redis! by 2019.1.16");
 
 
-        System.err.println("Hello Demo");
+        System.out.println("Hello Demo");
         System.out.println(redisString.getValue("hello"));
     }
 
@@ -49,7 +49,7 @@ public class RedisConfigTest2 {
         redisCache.updateCached(5, "PersonVo", personVo, null);
 
 
-        System.err.println("Hello Demo");
+        System.out.println("Hello Demo");
         PersonVo personVo1 = (PersonVo) redisCache.getCached(5, "PersonVo2");
         System.out.println(personVo1);
     }

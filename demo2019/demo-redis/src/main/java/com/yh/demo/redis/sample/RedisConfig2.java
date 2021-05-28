@@ -45,7 +45,7 @@ public class RedisConfig2 extends JCacheConfigurerSupport {
 //        jedisPoolConfig.setMinIdle(minIdle);
 //        jedisPoolConfig.setMaxTotal(maxTotal);
 //        jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
-//        System.err.println("redis地址：" + host + ":" + port);
+//        System.out.println("redis地址：" + host + ":" + port);
 //        return jedisConnectionFactory;
 //    }
 //

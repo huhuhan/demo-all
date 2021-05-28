@@ -93,7 +93,7 @@ public class ZipBo {
                 if (zipFile.exists()) {
                     this.packAddFile(zos, zipBeanBo.getRelativePath(), zipFile);
                 } else {
-                    System.err.println("文件不存在，文件来源:" + zipFile.getAbsolutePath());
+                    System.out.println("文件不存在，文件来源:" + zipFile.getAbsolutePath());
                 }
             }
         } catch (FileNotFoundException e1) {
@@ -191,7 +191,7 @@ public class ZipBo {
             }
             System.out.println(String.format("解压文件%s到%s", zipFile.getAbsolutePath(), toDir));
         } catch (Exception e) {
-            System.err.println(String.format("解压文件%s到%s出错:%s", zipFile.getAbsolutePath(), toDir, e.getMessage()));
+            System.out.println(String.format("解压文件%s到%s出错:%s", zipFile.getAbsolutePath(), toDir, e.getMessage()));
             throw e;
         } finally {
             close(bos, bis, zis, zf);

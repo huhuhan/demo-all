@@ -10,12 +10,12 @@ public class C3 implements InterfaceC {
 
     @Override
     public void todo() {
-        System.err.println("by C3 extends C2 extends C1");
+        System.out.println("by C3 extends C2 extends C1");
     }
 
 
     public String c3Todo(){
-        System.err.println("by c3");
+        System.out.println("by c3");
         this.todo();
         return "c3Todo";
     }

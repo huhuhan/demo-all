@@ -14,10 +14,10 @@ public class IAaServiceProxyImpl implements IAaService {
 
     @Override
     public void a1() {
-        System.err.println("静态代理：前置内容");
+        System.out.println("静态代理：前置内容");
 
         target.a1();
 
-        System.err.println("静态代理：后置内容");
+        System.out.println("静态代理：后置内容");
     }
 }

@@ -60,7 +60,7 @@ public class IntBufferTest {
 
 
         //比较flip()方法和position(index)方法的区别
-        System.err.println("position:" + buffer1.position());
+        System.out.println("position:" + buffer1.position());
         buffer1.flip();
 //        buffer1.compact();
         System.out.println("buffer1的可读数量：" + buffer1.remaining());

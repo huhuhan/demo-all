@@ -20,7 +20,7 @@ public class Client {
             while (true) {
                 Scanner scanner = new Scanner(System.in);
                 String inRead = scanner.nextLine();
-                System.err.println(inRead+"|"+inRead.length());
+                System.out.println(inRead+"|"+inRead.length());
                 if(inRead.equals("end")){
                     break;
                 } else {
