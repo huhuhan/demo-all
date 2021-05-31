@@ -1,0 +1,2 @@
+com.yh.demo.base.spi.MemeryICacheSPI
+com.yh.demo.base.spi.RedisICacheSPI
