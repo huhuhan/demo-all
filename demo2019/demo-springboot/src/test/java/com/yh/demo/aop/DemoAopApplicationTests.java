@@ -18,6 +18,7 @@ import org.springframework.aop.MethodBeforeAdvice;
 import org.springframework.aop.MethodMatcher;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
+import org.springframework.aop.framework.ProxyCreatorSupport;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
@@ -121,7 +122,7 @@ public class DemoAopApplicationTests {
 
     /**
      * 源码理解案例
-     *
+     * 通过 {@link ProxyCreatorSupport}的实现，有几种子类，都可创建代理对象
      * @throws Exception
      */
     @Test

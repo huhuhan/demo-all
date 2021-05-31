@@ -3,6 +3,9 @@ package com.yh.demo.aop;
 import com.yh.demo.aop.service.impl.C3;
 import org.junit.Test;
 import org.springframework.cglib.proxy.*;
+import org.springframework.objenesis.Objenesis;
+import org.springframework.objenesis.ObjenesisStd;
+import org.springframework.objenesis.instantiator.ObjectInstantiator;
 
 import java.lang.reflect.Method;
 
@@ -40,6 +43,14 @@ public class CglibTests {
                     public Object loadObject() throws Exception {
                         return "cglib test";
                     }
+                },
+                // 4. 懒加载
+                new LazyLoader() {
+                    @Override
+                    public Object loadObject() throws Exception {
+                        System.out.println("调用LazyLoader.loadObject()方法");
+                        return "懒加载，同一方法调用，只拦截一次";
+                    }
                 }
         };
         // 添加Callback接口
@@ -58,6 +69,20 @@ public class CglibTests {
         C3 proxy = (C3) enhancer.create();
         proxy.todo();
         System.out.println(proxy.c3Todo());
+    }
+
+    /**
+     * cglib,创建对象的接口，即使没有构造函数也能创建。
+     */
+    @Test
+    public void test3(){
+        Objenesis objenesis = new ObjenesisStd();
+        ObjectInstantiator<C3> userObjectInstantiator = objenesis.getInstantiatorOf(C3.class);
+        C3 c3 = userObjectInstantiator.newInstance();
+        System.out.println(c3);
+        C3 c31 = userObjectInstantiator.newInstance();
+        System.out.println(c31);
+        System.out.println(c3 == c31);
     }
 
     /**
