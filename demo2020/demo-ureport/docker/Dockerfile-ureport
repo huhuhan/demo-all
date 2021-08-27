@@ -13,7 +13,7 @@ RUN apk --update add curl bash ttf-dejavu && \
 ADD jar/ureport.jar app.jar
 
 #启动容器时的进程
-ENTRYPOINT ["java","-jar","/app.jar","-spring.profiles.active=h2"]
+ENTRYPOINT ["java","-jar","/app.jar","--spring.profiles.active=h2"]
 
 #暴露端口
 EXPOSE 8279
