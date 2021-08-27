@@ -29,7 +29,7 @@ public class MpGenerator {
 
     private static final DbType DB_TYPE = DbType.MYSQL;
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/tes_db?useUnicode=true&autoReconnect=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/test_base?useUnicode=true&autoReconnect=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "yanghan";
 
@@ -39,7 +39,7 @@ public class MpGenerator {
 //    private static final String DB_USERNAME = "postgres";
 //    private static final String DB_PASSWORD = "postgres";
 
-    private static final String PACKAGE = "com.yhcloud.provider";
+    private static final String PACKAGE = "com.yh.cloud";
     private static final String CONTROLLER = "rest";
     private static final String ENTITY = "model.domain";
 

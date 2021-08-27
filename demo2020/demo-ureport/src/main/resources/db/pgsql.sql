@@ -49,7 +49,7 @@ COMMENT ON TABLE "public"."report_file" IS '报表信息记录表';
 -- ----------------------------
 -- Alter sequences owned by
 -- ----------------------------
-SELECT setval('"public"."report_file_s"', 21, true);
+SELECT setval('"public"."report_file_s"', 1, true);
 
 -- ----------------------------
 -- Primary Key structure for table report_file

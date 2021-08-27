@@ -1,0 +1,24 @@
+server:
+  port: 8280
+
+spring:
+  datasource:
+    # 数据文件在C:\Users\用户名\下面
+    url: jdbc:h2:~/ureport;
+#    url: jdbc:h2:D:\YH\test\ureport;MODE=MySQL;DATABASE_TO_LOWER=TRUE;
+    driver-class-name: org.h2.Driver
+    password:
+    username: root
+    # 注意不同数据库，SQL写法不同。测试PostgreSQL的语句运行不了。。。
+    schema: classpath:db/h2.sql
+  h2:
+    console:
+      enabled: true
+      settings:
+        trace: true
+        # web-console 支持远程访问，默认本机访问
+        web-allow-others: true
+      # 访问H2数据库地址
+      path: /h2-console
+
+

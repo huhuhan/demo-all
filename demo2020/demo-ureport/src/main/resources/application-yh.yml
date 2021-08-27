@@ -3,10 +3,21 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://192.168.0.82:5432/ureport
-    driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: abc123456
+    url: jdbc:h2:D:\YH\test\ureport;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;
+    driver-class-name: org.h2.Driver
+#    password: 123
+    username: root
+    schema: classpath:db/pgsql.sql
+  h2:
+    console:
+      enabled: true
+      settings:
+        trace: true
+        web-allow-others: true
+  #    url: jdbc:postgresql://localhost:5432/ureport
+#    driver-class-name: org.postgresql.Driver
+#    username: postgres
+#    password: yanghan
   mvc:
     static-path-pattern: /**
   resources:
