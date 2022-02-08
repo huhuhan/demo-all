@@ -39,7 +39,7 @@ spring:
 #log日志配置
 logging:
   #文件输入绝对路径
-  file: /usr/fwreport/log
+  file: /usr/ureport/log
   config: classpath:config/logback-dev.xml
 
 # ureport Mysql 存储

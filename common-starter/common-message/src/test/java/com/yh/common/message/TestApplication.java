@@ -2,10 +2,16 @@ package com.yh.common.message;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.log.StaticLog;
+import com.yh.common.message.captcha.CaptchaContext;
+import com.yh.common.message.captcha.ImgCaptchaGenerator;
+import com.yh.common.message.captcha.TextCaptchaGenerator;
 import com.yh.common.message.model.constant.SmsConstant;
 import com.yh.common.message.model.dto.SmsTemplateDTO;
+import com.yh.common.message.model.vo.ImgCaptchaQueryVO;
 import com.yh.common.message.model.vo.SmsCodeVO;
 import com.yh.common.message.model.vo.SmsDataVO;
+import com.yh.common.message.model.vo.TextCaptchaQueryVO;
 import com.yh.common.message.util.SmsUtil;
 import com.yh.common.message.util.SystemEmailUtil;
 import org.junit.Test;
@@ -43,5 +49,19 @@ public class TestApplication {
         bo.setCode(code);
         SmsTemplateDTO templateDTO = SmsUtil.getTemplate(SmsConstant.MODIFY_PWD_TEMPLATE);
         SmsUtil.send(mobile, bo, templateDTO);
+    }
+
+    @Test
+    public void test3() throws Exception {
+        // 设置传参
+        TextCaptchaQueryVO textCaptchaQueryVo = new TextCaptchaQueryVO();
+        ImgCaptchaQueryVO imgCaptchaQueryVo = new ImgCaptchaQueryVO();
+        // 生成验证码
+        CaptchaContext captcha = new CaptchaContext(new TextCaptchaGenerator(textCaptchaQueryVo));
+        StaticLog.info("文本验证码：{}", captcha.getCode());
+        CaptchaContext captchaImg = new CaptchaContext(new ImgCaptchaGenerator(imgCaptchaQueryVo));
+        StaticLog.info("图片中的验证码：{}", captchaImg.getCode());
+        // 写到输出流中
+        //captcha.write(os);
     }
 }
