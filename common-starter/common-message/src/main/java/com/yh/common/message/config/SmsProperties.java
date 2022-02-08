@@ -1,6 +1,6 @@
 package com.yh.common.message.config;
 
-import com.yh.common.message.model.SmsTemplateDTO;
+import com.yh.common.message.model.dto.SmsTemplateDTO;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

@@ -8,7 +8,7 @@ package com.yh.common.message.model.vo;
  * @author yanghan
  * @date 2021/7/6
  */
-public interface SmsDataVo {
+public interface SmsDataVO {
     /**
      * 验证码之类
      *

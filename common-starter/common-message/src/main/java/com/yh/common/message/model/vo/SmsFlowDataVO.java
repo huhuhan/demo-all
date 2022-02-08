@@ -9,7 +9,7 @@ import lombok.Data;
  * @date 2021/7/6
  */
 @Data
-public class SmsFlowDataVo implements SmsDataVo {
+public class SmsFlowDataVO implements SmsDataVO {
     /** 流程标题 */
     private String name;
     /** 上个节点 */

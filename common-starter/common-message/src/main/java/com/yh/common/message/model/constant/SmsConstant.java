@@ -1,4 +1,4 @@
-package com.yh.common.message.model;
+package com.yh.common.message.model.constant;
 
 /**
  * 常量类

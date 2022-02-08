@@ -10,7 +10,7 @@ import lombok.Data;
  * @date 2021/7/6
  */
 @Data
-public class SmsCodeVo implements SmsDataVo {
+public class SmsCodeVO implements SmsDataVO {
 
     private String code;
 }

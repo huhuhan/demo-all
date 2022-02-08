@@ -11,8 +11,8 @@ import com.aliyun.dysmsapi20170525.models.SendSmsResponse;
 import com.aliyun.teaopenapi.models.Config;
 import com.yh.common.message.config.AppFactory;
 import com.yh.common.message.config.SmsProperties;
-import com.yh.common.message.model.SmsTemplateDTO;
-import com.yh.common.message.model.vo.SmsDataVo;
+import com.yh.common.message.model.dto.SmsTemplateDTO;
+import com.yh.common.message.model.vo.SmsDataVO;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -99,7 +99,7 @@ public class SmsUtil {
      * @author yanghan
      * @date 2021/8/25
      */
-    public static void send(String mobile, SmsDataVo bo, SmsTemplateDTO smsTemplateDTO) throws Exception {
+    public static void send(String mobile, SmsDataVO bo, SmsTemplateDTO smsTemplateDTO) throws Exception {
         send(true, mobile, bo, smsTemplateDTO);
     }
 
@@ -109,7 +109,7 @@ public class SmsUtil {
      * @author yanghan
      * @date 2021/8/25
      */
-    public static void send(boolean isSingleClient, String mobile, SmsDataVo bo, SmsTemplateDTO smsTemplateDTO) throws Exception {
+    public static void send(boolean isSingleClient, String mobile, SmsDataVO bo, SmsTemplateDTO smsTemplateDTO) throws Exception {
         checkMobile(mobile, true);
         try {
             Client client = isSingleClient ? getSingleClient() : createClient();

@@ -2,10 +2,10 @@ package com.yh.common.message;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.RandomUtil;
-import com.yh.common.message.model.SmsConstant;
-import com.yh.common.message.model.SmsTemplateDTO;
-import com.yh.common.message.model.vo.SmsCodeVo;
-import com.yh.common.message.model.vo.SmsDataVo;
+import com.yh.common.message.model.constant.SmsConstant;
+import com.yh.common.message.model.dto.SmsTemplateDTO;
+import com.yh.common.message.model.vo.SmsCodeVO;
+import com.yh.common.message.model.vo.SmsDataVO;
 import com.yh.common.message.util.SmsUtil;
 import com.yh.common.message.util.SystemEmailUtil;
 import org.junit.Test;
@@ -39,7 +39,7 @@ public class TestApplication {
     public void test2() throws Exception {
         String mobile = "148429428451";
         String code = RandomUtil.randomNumbers(6);
-        SmsDataVo bo = new SmsCodeVo();
+        SmsDataVO bo = new SmsCodeVO();
         bo.setCode(code);
         SmsTemplateDTO templateDTO = SmsUtil.getTemplate(SmsConstant.MODIFY_PWD_TEMPLATE);
         SmsUtil.send(mobile, bo, templateDTO);
