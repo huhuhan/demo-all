@@ -16,7 +16,7 @@
         <mybatis.plus.version>3.1.0</mybatis.plus.version>
         <velocity-engine-core.version>2.1</velocity-engine-core.version>
         <mysql.version>8.0.15</mysql.version>
-        <postgresql.version>42.2.8</postgresql.version>
+        <postgresql.version>42.2.25</postgresql.version>
     </properties>
 
     <dependencies>
