@@ -31,3 +31,6 @@
 - demo 2021
     - demo-druid : 多数据源例子 + dynamic-datasource-starter的应用
     - demo-pdf：电子签章，pdf合成文档，可验签
+- common-starter
+    - 公共应用集成包，部分应用在[yh-cloud](https://github.com/huhuhan/yh-cloud)项目中，暂时用不到的放在这边。
+    - common-message：邮箱、阿里短信

@@ -1,0 +1,27 @@
+yh:
+  message:
+    # 注入关键类
+    enabled: true
+    email:
+      # 开启邮箱功能
+      enabled: true
+      address: yh@xxxx.com
+      nick-name: 邮箱别名<yh@xxxx.com>
+      password: 邮箱密码
+      host: smtp.qiye.aliyun.com
+      port: 465
+      system-title: 邮箱标题
+    sms:
+      enabled: true
+      app-id: XXXXX
+      app-key: XXXXX
+      endpoint: dysmsapi.aliyuncs.com
+      templates:
+        # 默认模板，参考SmsTemplateDTO常量类
+        tp_default:
+          sign: 签名
+          code: 密钥xxxx
+        # 修改密码
+        tp_pwd:
+          sign: 签名
+          code: 修改密钥xxxx
