@@ -34,3 +34,5 @@
 - common-starter
     - 公共应用集成包，部分应用在[yh-cloud](https://github.com/huhuhan/yh-cloud)项目中，暂时用不到的放在这边。
     - common-message：邮箱、阿里短信、验证码。测试类中有使用参考
+- demo 2022
+    - demo-geo : geojson和shapefile的转换工具测试，基于geotools

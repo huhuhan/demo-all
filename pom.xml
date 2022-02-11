@@ -18,6 +18,7 @@
         <module>demo2020</module>
         <module>demo2021</module>
         <module>common-starter</module>
+        <module>demo2022</module>
     </modules>
 
 </project>

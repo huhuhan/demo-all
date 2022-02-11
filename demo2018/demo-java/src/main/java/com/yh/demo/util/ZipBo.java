@@ -18,11 +18,11 @@ public class ZipBo {
 
     public static void main(String[] args) throws Exception {
         testZip();
-        testUnZip();
+//        testUnZip();
     }
 
     public static void testZip() {
-        String basePath = "C:\\Users\\fw\\Desktop";
+        String basePath = "demo2018/demo-java/data/ZipBo";
         String zipPath = "\\压缩文件.zip";
         ZipBo zipBo = new ZipBo(basePath + zipPath);
         List<ZipBeanBo> data = zipBo.getData();
