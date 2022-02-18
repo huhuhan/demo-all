@@ -78,8 +78,6 @@ spring:
         filters: config
         connectionProperties: config.decrypt=true;config.decrypt.key=${public-key};druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     # 自定规则，多数据库源加载方式
-spring:
-  datasource:
     dynamic-yh:
       enabled: true
       primary: master
