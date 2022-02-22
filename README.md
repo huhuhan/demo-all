@@ -1,6 +1,7 @@
 # 练习项目归纳总结
 
-> 将分散在多个仓库中的demo项目汇总，部分项目比较老，都经测试可运行才归纳，无法运行的直接删除了
+> - 将分散在多个仓库中的demo项目汇总，部分项目比较老，都经测试可运行才归纳，无法运行的直接删除了
+> - 可直接加载module运行，不一定要加载demo-all根目录
 
 ## 清单
 - demo spring boot starter
@@ -34,5 +35,6 @@
 - common-starter
     - 公共应用集成包，部分应用在[yh-cloud](https://github.com/huhuhan/yh-cloud)项目中，暂时用不到的放在这边。
     - common-message：邮箱、阿里短信、验证码。测试类中有使用参考
+    - common-job: xxl-job
 - demo 2022
     - demo-geo : geojson和shapefile的转换工具测试，基于geotools
