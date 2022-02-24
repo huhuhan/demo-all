@@ -34,12 +34,13 @@
           addresses: http://192.168.0.36:8080
     ```
 
-- 使用例子：依赖包名中有源代码`com.yh.common.job.handler.DemoHandler`，主要步骤：
+- 使用例子：
 
-    - 定义方法，加注解`@XxlJob("demoJobHandler")`
+    - **执行器项目**中，开发方法，加注解`@XxlJob("demoJobHandler")`
     - 方法中日志输出用`XxlJobHelper.log`
-    - 在**调度平台-执行器管理**，添加执行器，配置中的自定义执行器名称，会自动注册
+    - 在**调度中心-执行器管理**，添加执行器，配置中的自定义执行器名称，会自动注册
     - 在**调度平台-任务管理**，添加任务，其中**JobHandler**，就是上面注解的`demoJobHandler`
     - 调用测试即可
+    - 依赖包名中有源代码任务例子`com.yh.common.job.handler.XxjJobDemoHandler`
 
 - 更多使用方法，参考[官方文档](https://www.xuxueli.com/xxl-job/#%E3%80%8A%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%B9%B3%E5%8F%B0XXL-JOB%E3%80%8B)

@@ -2,7 +2,7 @@ package com.yh.common.job.config;
 
 
 import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
-import com.yh.common.job.handler.DemoHandler;
+import com.yh.common.job.handler.XxjJobDemoHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -42,7 +42,7 @@ public class XxlJobAutoConfiguration {
     }
 
     @Bean
-    public DemoHandler demoHandler(){
-        return new DemoHandler();
+    public XxjJobDemoHandler demoHandler(){
+        return new XxjJobDemoHandler();
     }
 }
