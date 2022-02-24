@@ -1,12 +1,28 @@
-## 说明
+## 自定义
 
-> 基于XXL-JOb
+> 基于com.hutoll.CronUtil
+
+- 引入依赖
+
+- 配置开启
+
+    ```yaml
+    # 默认不开启
+    yh.schedule.enabled: true
+    ```
+
+- 用`@YhSchedule`注解触发，配置cron表达式，支持秒级
+
+- 异常处理实现，参考接口`com.yh.common.job.handler.YhScheduledExceptionHandler`
+
+
+## XXL-JOb
 
 ### 调度平台
 
 参考部署：[docker-compose](https://raw.githubusercontent.com/huhuhan/demo-docker/master/xxl-job-admin/docker-compose.yml)
 
-### 项目依赖
+### 项目应用
 
 - 引入依赖
 
