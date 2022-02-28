@@ -3,9 +3,13 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/ureport
-    driver-class-name: org.postgresql.Driver
-    username: postgres
+#    url: jdbc:postgresql://localhost:5432/ureport
+#    driver-class-name: org.postgresql.Driver
+#    username: postgres
+#    password: yanghan
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ureport?useUnicode=true&autoReconnect=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
     password: yanghan
   mvc:
     static-path-pattern: /**
