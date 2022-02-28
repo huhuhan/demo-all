@@ -3,21 +3,10 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:D:\YH\test\ureport;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;
-    driver-class-name: org.h2.Driver
-#    password: 123
-    username: root
-    schema: classpath:db/pgsql.sql
-  h2:
-    console:
-      enabled: true
-      settings:
-        trace: true
-        web-allow-others: true
-  #    url: jdbc:postgresql://localhost:5432/ureport
-#    driver-class-name: org.postgresql.Driver
-#    username: postgres
-#    password: yanghan
+    url: jdbc:postgresql://localhost:5432/ureport
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: yanghan
   mvc:
     static-path-pattern: /**
   resources:
@@ -32,12 +21,14 @@ spring:
 #log日志配置
 logging:
   #文件输入绝对路径
-  file: /opt/ureport/log/out.log
+  file:
+    path: /usr/report/log
 
 
-# ureport 数据库源
-ureport:
-  provider:
-    postgresql:
+yh:
+  ureport:
+    provider:
+      db-type: postgesql
       prefix: yh-
-      disabled: false
+      enabled: true
+      name: 本地数据库
