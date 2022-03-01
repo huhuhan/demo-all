@@ -1,22 +1,19 @@
 ﻿version: '3'
 
-networks:
-  ureport:
-    driver: bridge
 
 services:
   ureport:
+    # 构建是开源版本, h2数据库版，详情查看描述：https://hub.docker.com/r/huhuhan/ureport
+    image: huhuhan/ureport:latest
     container_name: ureport
-    restart: always
-    # 自动从远程仓库下载
-    image: 101.91.199.54:8212/ureport:2.0
     environment:
-     TZ: Asia/Shanghai
+      TZ: Asia/Shanghai
+      # 默认是h2数据库。切换yh环境，可指定数据库支持mysql、pgsql
+      PARAMS: "--spring.profiles.active=h2
+      "
     ports:
-    # 修改为开放端口
-     - 8279:8279
+      - 8279:8279
     volumes:
-    # 修改为本地路径
-      - /home/java-web/ureport/config:/config
-    networks:
-      - ureport
+      # 默认挂载：服务器文件系统
+      - /ws/soft/ureport/data/file:/usr/ureport/file
+      - /ws/soft/ureport/data/log:/usr/ureport/log

@@ -10,10 +10,13 @@ RUN apk --update add curl bash ttf-dejavu && \
       rm -rf /var/cache/apk/*
 #RUN apk add --update ttf-dejavu fontconfig && rm -rf /var/cache/apk/*
 #应用构建成功后的jar文件被复制到镜像内，名字也改成了app.jar
-ADD jar/ureport.jar app.jar
+ADD jar/ureport.jar ureport.jar
+ENV PARAMS=
 
 #启动容器时的进程
-ENTRYPOINT ["java","-jar","/app.jar","--spring.profiles.active=h2"]
+#ENTRYPOINT ["java","-jar","/ureport.jar","--spring.profiles.active=h2"]
+ENTRYPOINT ["java","-jar","/ureport.jar", " $PARAMS"]
+
 
 #暴露端口
 EXPOSE 8279

@@ -1,11 +1,41 @@
+server:
+  port: 8279
+
 spring:
   profiles:
-    active: yh
+    active: h2
   application:
     name: ureport
-
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/META-INF/resources/,file:/usr/ureport
+  #文件上传
+  servlet:
+    # 文件上传大小限制
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
 
+# 日志配置
+logging:
+  #文件输入绝对路径
+  file:
+    path: /usr/ureport/log
+
+# 默认配置
+ureport:
+  disableHttpSessionReportCache: false
+  debug: true
+  disableFileProvider: false
+  fileStoreDir: /usr/ureport/file
 
 
+# 自定义配置
+yh:
+  ureport:
+    provider:
+      prefix: yh-
+      enabled: true

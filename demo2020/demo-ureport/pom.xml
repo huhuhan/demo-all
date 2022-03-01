@@ -20,6 +20,7 @@
         <postgresql.verson>42.2.8</postgresql.verson>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.10</lombok.version>
+        <h2.version>1.4.200</h2.version>
     </properties>
 
     <!--控制spring-cloud组件版本-->
@@ -88,7 +89,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.4.200</version>
+            <version>${h2.version}</version>
 <!--            <scope>test</scope>-->
         </dependency>
 

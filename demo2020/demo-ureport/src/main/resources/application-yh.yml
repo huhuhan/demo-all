@@ -11,28 +11,5 @@ spring:
     url: jdbc:mysql://localhost:3306/ureport?useUnicode=true&autoReconnect=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
     password: yanghan
-  mvc:
-    static-path-pattern: /**
-  resources:
-    static-locations: classpath:/META-INF/resources/,file:${uploadfile.path}
-  #文件上传
-  servlet:
-    # 文件上传大小限制
-    multipart:
-      max-file-size: 30MB
-      max-request-size: 30MB
-
-#log日志配置
-logging:
-  #文件输入绝对路径
-  file:
-    path: /usr/report/log
 
 
-yh:
-  ureport:
-    provider:
-      db-type: postgesql
-      prefix: yh-
-      enabled: true
-      name: 本地数据库
