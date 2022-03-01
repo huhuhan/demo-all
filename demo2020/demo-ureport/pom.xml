@@ -17,7 +17,7 @@
         <spring-boot.version>2.2.10.RELEASE</spring-boot.version>
         <ureport.verson>2.2.9</ureport.verson>
         <mybatis.plus.version>3.1.0</mybatis.plus.version>
-        <postgresql.verson>42.2.8</postgresql.verson>
+        <postgresql.verson>42.3.3</postgresql.verson>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.10</lombok.version>
         <h2.version>1.4.200</h2.version>
