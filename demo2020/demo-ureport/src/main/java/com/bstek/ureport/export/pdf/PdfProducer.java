@@ -71,8 +71,8 @@ public class PdfProducer implements Producer {
             // 加入文字水印
             Object watermark = report.getContext().getParameters().get(BaseContants.PARAMETER_WATERMARK);
             writer.setPageEvent(new TextWatermark(watermark));
-            // todo: 加入图片水印
-            //writer.setPageEvent(new ImageWatermark());
+            // 加入图片水印
+            writer.setPageEvent(new ImageWatermark(paper.getBgImage()));
 
 
             List<Column> columns = report.getColumns();

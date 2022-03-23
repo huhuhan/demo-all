@@ -30,7 +30,7 @@ ureport:
   disableHttpSessionReportCache: false
   debug: true
   disableFileProvider: false
-  fileStoreDir: /usr/ureport/file
+  fileStoreDir: /usr/ureport/file # F:\usr\ureport\file
 
 
 # 自定义配置
