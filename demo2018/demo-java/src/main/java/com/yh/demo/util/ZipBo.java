@@ -47,7 +47,7 @@ public class ZipBo {
     }
 
     public static void testUnZip() throws Exception {
-        String basePath = "C:\\Users\\fw\\Desktop";
+        String basePath = "C:\\Users\\yh\\Desktop";
         String zipPath = "\\压缩文件.zip";
         ZipBo.unzip(new File(basePath + zipPath), basePath);
     }

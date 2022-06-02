@@ -1,0 +1,37 @@
+server:
+  port: 8345
+
+#spring
+spring:
+  application:
+    name: yh-search
+  mvc:
+    static-path-pattern: /**
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+
+# es 测试服务
+elasticsearch:
+  ip: 120.24.61.xx
+  port: 8910
+
+#log
+logging:
+  path: /usr/yh-search/log
+
+#swagger
+swagger:
+  enabled: true
+  title: 搜索服务
+  description: API文档
+  version: 2.0
+  license: Apache License, Version 2.0
+  license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  terms-of-service-url: http://www.hlrt.xyz
+  base-path: /**
+  exclude-path: /error
+  authorization:
+    key-name: Authorization
+  base-package: com.yh

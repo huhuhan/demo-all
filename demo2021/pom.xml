@@ -13,5 +13,6 @@
     <modules>
         <module>demo-druid</module>
         <module>demo-pdf</module>
+        <module>demo-search</module>
     </modules>
 </project>

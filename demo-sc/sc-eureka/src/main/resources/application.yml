@@ -5,7 +5,7 @@ spring:
     active: dev
   application:
     #bootstrap中无效，加载优先于pom，在application中有效
-    name: hs-eureka
+    name: sc-eureka
 eureka:
     instance:
         hostname: localhost
