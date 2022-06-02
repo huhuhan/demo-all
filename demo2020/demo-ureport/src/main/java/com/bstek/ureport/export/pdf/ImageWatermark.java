@@ -14,6 +14,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * 背景图作为水印，打印导出
+ */
 public class ImageWatermark extends PdfPageEventHelper {
     private String bgImage;
 
@@ -49,8 +52,13 @@ public class ImageWatermark extends PdfPageEventHelper {
         }
     }
 
+    /**
+     * 项目中某固定图片
+     * @return
+     */
     private InputStream getImgInputStreamByLocal() {
-        return this.getClass().getResourceAsStream("/xx.png");
+        // 例子
+        return this.getClass().getResourceAsStream("/static/404.png");
     }
 
     private InputStream getImgInputStream(String url) {

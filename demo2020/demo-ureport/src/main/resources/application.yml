@@ -31,7 +31,7 @@ ureport:
   debug: true
   disableFileProvider: false
   # 文件存储：服务器文件系统，必须先手动创建
-  fileStoreDir: /usr/ureport/file
+  fileStoreDir: /usr/ureport/file # F:\usr\ureport\file
 
 
 # 自定义配置，仅适用数据源的文件
