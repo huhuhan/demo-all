@@ -30,10 +30,11 @@ ureport:
   disableHttpSessionReportCache: false
   debug: true
   disableFileProvider: false
-  fileStoreDir: /usr/ureport/file # F:\usr\ureport\file
+  # 文件存储：服务器文件系统，必须先手动创建
+  fileStoreDir: /usr/ureport/file
 
 
-# 自定义配置
+# 自定义配置，仅适用数据源的文件
 yh:
   ureport:
     provider:
